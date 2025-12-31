@@ -1,7 +1,9 @@
 package com.sampreet.letters;
 
-import com.sampreet.letters.lib.Utils;
+import com.sampreet.letters.commands.RootCommand;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.sampreet.letters.lib.Utils;
+import java.util.Objects;
 
 public final class Letters extends JavaPlugin {
     // Store utils class instance for accessing helper functions
@@ -21,6 +23,10 @@ public final class Letters extends JavaPlugin {
         // Initialize the Utils class with the plugin instance
         utils = new Utils(this);
 
+        // Register the root command executor
+        RootCommand rootCommand = new RootCommand(this);
+        Objects.requireNonNull(this.getCommand("letters")).setExecutor(rootCommand);
+
         // Log that the plugin has successfully loaded and is ready
         String enableMessage = utils.getMessage("messages.system.lifecycle.enable");
         if (enableMessage!=null) {
@@ -39,5 +45,10 @@ public final class Letters extends JavaPlugin {
             disableMessage = utils.setPlaceholders(disableMessage);
             getLogger().info(disableMessage);
         }
+    }
+
+    // Getter function to make utils available outside main class
+    public Utils getUtils() {
+        return utils;
     }
 }

@@ -1,6 +1,7 @@
 package com.sampreet.letters.lib;
 
 import com.sampreet.letters.Letters;
+import org.bukkit.ChatColor;
 
 public class Utils {
     // Store plugin instance for accessing config
@@ -27,6 +28,9 @@ public class Utils {
     public String setPlaceholders(String message) {
         // Insert current plugin version into placeholder
         message = message.replace("%version%", plugin.getDescription().getVersion());
+
+        // Translate color codes
+        message = ChatColor.translateAlternateColorCodes('&', message);
 
         // Return the message with the placeholders set
         return message;

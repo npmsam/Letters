@@ -19,3 +19,18 @@ messages:
 
       # Message sent to the console when the plugin is disabled.
       disable: "Disabled Letters v%version%"
+
+    # Command-related system messages.
+    commands:
+
+      # Message sent when the plugin is reloaded.
+      reload: "&aReloaded Letters v%version%"
+
+      # Message sent when no subcommand is used.
+      no-command: "&cYou must specify a subcommand."
+
+      # Message sent when an invalid subcommand is used.
+      invalid-command: "&cUnknown command."
+
+      # Message sent when the player lacks permission.
+      no-permission: "&cYou do not have permission to do that."

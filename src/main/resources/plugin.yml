@@ -6,3 +6,14 @@ prefix: Letters
 authors: [ Sampreet Singh ]
 description: Lightweight Minecraft server plugin that lets you fully customize system messages like join, leave, death messages with placeholders, colors, and more.
 website: https://github.com/npmsam/Letters
+commands:
+  # Main command for controlling the plugin
+  letters:
+    description: The main command for managing the plugin
+    usage: /<command> <subcommand>
+
+permissions:
+  # Permission to reload the plugin configuration
+  letters.reload:
+    description: Allows reloading of the plugin configuration
+    default: op
