@@ -3,10 +3,13 @@ package com.sampreet.letters.commands;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import com.sampreet.letters.Letters;
 import org.bukkit.command.Command;
+import java.util.ArrayList;
+import java.util.List;
 
-public class RootCommand implements CommandExecutor {
+public class RootCommand implements CommandExecutor, TabCompleter {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
@@ -38,6 +41,23 @@ public class RootCommand implements CommandExecutor {
         // If the subcommand was not found
         sendMessage(sender, "messages.system.commands.invalid-command");
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias, @NonNull String [] args) {
+        // Create a list to store possible completions
+        List<String> completions = new ArrayList<>();
+
+        // Only provide completions for the first argument (the subcommand)
+        if (args.length == 1) {
+            // If the user has started typing "reload", suggest it
+            if ("reload".startsWith(args[0].toLowerCase()) && sender.hasPermission("letters.reload")) {
+                completions.add("reload");
+            }
+        }
+
+        // Return the list of suggestions
+        return completions;
     }
 
     // Helper function to send a message to the command sender from config.yml
