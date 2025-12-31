@@ -1,0 +1,8 @@
+name: Letters
+version: '0.0.1'
+main: com.sampreet.letters.Letters
+api-version: '1.21'
+prefix: Letters
+authors: [ Sampreet Singh ]
+description: Lightweight Minecraft server plugin that lets you fully customize system messages like join, leave, death messages with placeholders, colors, and more.
+website: https://github.com/npmsam/Letters
