@@ -1,17 +1,43 @@
 package com.sampreet.letters;
 
+import com.sampreet.letters.lib.Utils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Letters extends JavaPlugin {
+    // Store utils class instance for accessing helper functions
+    private Utils utils;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        // Save default config.yml to plugin folder
+        saveDefaultConfig();
 
+        // Check whether plugin is enabled or disabled in config.yml
+        if (!getConfig().getBoolean("enabled", true)) {
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        // Initialize the Utils class with the plugin instance
+        utils = new Utils(this);
+
+        // Log that the plugin has successfully loaded and is ready
+        String enableMessage = utils.getMessage("messages.system.lifecycle.enable");
+        if (enableMessage!=null) {
+            // Insert current plugin version into placeholder
+            enableMessage = utils.setPlaceholders(enableMessage);
+            getLogger().info(enableMessage);
+        }
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Log that the plugin has been disabled
+        String disableMessage = utils.getMessage("messages.system.lifecycle.disable");
+        if (disableMessage!=null) {
+            // Insert current plugin version into placeholder
+            disableMessage = utils.setPlaceholders(disableMessage);
+            getLogger().info(disableMessage);
+        }
     }
 }
