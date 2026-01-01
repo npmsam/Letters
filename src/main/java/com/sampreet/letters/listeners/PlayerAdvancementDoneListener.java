@@ -25,10 +25,7 @@ public class PlayerAdvancementDoneListener implements Listener {
         if (event.getAdvancement().getDisplay() == null) return;
 
         // Disable game-rule so the vanilla message does not show
-        GameRule<Boolean> showAdvancementMessages = getAdvancementGameRule();
-        if (showAdvancementMessages != null && Boolean.TRUE.equals(event.getPlayer().getWorld().getGameRuleValue(showAdvancementMessages))) {
-            event.getPlayer().getWorld().setGameRule(showAdvancementMessages, false);
-        }
+        disableVanillaAdvancementMessage(event);
 
         // Retrieve a random message from config.yml
         String advancementMessage = plugin.getUtils().getRandomMessage("messages.default.advancement");
@@ -39,19 +36,25 @@ public class PlayerAdvancementDoneListener implements Listener {
         event.getPlayer().getServer().broadcastMessage(advancementMessage);
     }
 
+    // Prime example of "If it works, don't touch it..."
     @SuppressWarnings("unchecked")
-    private GameRule<Boolean> getAdvancementGameRule() {
-        try {
-            Field oldRule = GameRule.class.getField("ANNOUNCE_ADVANCEMENTS");
-            return (GameRule<Boolean>) oldRule.get(null);
-        } catch (NoSuchFieldException | IllegalAccessException e1) {
+    private void disableVanillaAdvancementMessage(PlayerAdvancementDoneEvent event) {
+        GameRule<Boolean> advancementRule = null;
+
+        for (String fieldName : new String[]{"ANNOUNCE_ADVANCEMENTS", "SHOW_ADVANCEMENT_MESSAGES"}) {
             try {
-                //noinspection JavaReflectionMemberAccess
-                Field newRule = GameRule.class.getField("SHOW_ADVANCEMENT_MESSAGES");
-                return (GameRule<Boolean>) newRule.get(null);
-            } catch (NoSuchFieldException | IllegalAccessException e2) {
-                return null;
-            }
+                Field field = GameRule.class.getField(fieldName);
+                advancementRule = (GameRule<Boolean>) field.get(null);
+                break;
+            } catch (NoSuchFieldException | IllegalAccessException ignored) {}
+        }
+
+        if (advancementRule == null) return;
+
+        if (Boolean.TRUE.equals(
+                event.getPlayer().getWorld().getGameRuleValue(advancementRule)
+        )) {
+            event.getPlayer().getWorld().setGameRule(advancementRule, false);
         }
     }
 }
