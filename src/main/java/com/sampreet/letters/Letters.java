@@ -1,8 +1,6 @@
 package com.sampreet.letters;
 
-import com.sampreet.letters.listeners.PlayerDeathListener;
-import com.sampreet.letters.listeners.PlayerJoinListener;
-import com.sampreet.letters.listeners.PlayerQuitListener;
+import com.sampreet.letters.listeners.*;
 import com.sampreet.letters.commands.RootCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.sampreet.letters.lib.Utils;
@@ -33,6 +31,8 @@ public final class Letters extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("letters")).setTabCompleter(rootCommand);
 
         // Register the event listeners
+        getServer().getPluginManager().registerEvents(new PlayerAdvancementDoneListener(this), this);
+        getServer().getPluginManager().registerEvents(new AsyncPlayerChatEventListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);

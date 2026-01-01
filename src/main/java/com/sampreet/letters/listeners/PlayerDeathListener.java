@@ -16,7 +16,7 @@ public class PlayerDeathListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(@NonNull PlayerDeathEvent event) {
-        // Check if the player has the permission to have custom join messages
+        // Check if the player has the permission to have custom death messages
         if (!event.getEntity().hasPermission("letters.death")) return;
 
         // Retrieve a random message from config.yml

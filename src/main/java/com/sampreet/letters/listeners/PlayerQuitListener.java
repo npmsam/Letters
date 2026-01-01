@@ -16,7 +16,7 @@ public class PlayerQuitListener implements Listener {
     
     @EventHandler
     public void onPlayerQuit(@NonNull PlayerQuitEvent event) {
-        // Check if the player has the permission to have custom join messages
+        // Check if the player has the permission to have custom quit messages
         if (!event.getPlayer().hasPermission("letters.quit")) return;
 
         // Retrieve a random message from config.yml

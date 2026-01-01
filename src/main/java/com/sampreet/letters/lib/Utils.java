@@ -1,5 +1,7 @@
 package com.sampreet.letters.lib;
 
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -84,6 +86,19 @@ public class Utils {
                                                 "%death_message%"
                                         )
                                 );
+
+                // Replace placeholders for when player makes an advancement
+                case PlayerAdvancementDoneEvent advancementEvent ->
+                        message = message
+                                .replace("%player_name%", advancementEvent.getPlayer().getDisplayName())
+                                .replace("%advancement_name%", Objects.requireNonNull(advancementEvent.getAdvancement().getDisplay()).getTitle())
+                                .replace("%advancement_color%", "&" + advancementEvent.getAdvancement().getDisplay().getType().getColor().getChar());
+
+                // Replace placeholders for when player sends a message in the server chat
+                case AsyncPlayerChatEvent ignored ->
+                        message = message
+                                .replace("%player_name%", "%1$s")
+                                .replace("%chat_message%", "%2$s");
 
                 default -> {}
             }

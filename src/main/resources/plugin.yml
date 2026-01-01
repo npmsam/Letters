@@ -32,3 +32,13 @@ permissions:
   letters.death:
     description: Allows the plugin to change death messages for the player
     default: true
+
+  # Default permission for having custom advancement messages
+  letters.advancement:
+    description: Allows the plugin to change advancement messages for the player
+    default: true
+
+  # Default permission for having custom server chat messages
+  letters.chat:
+    description: Allows the plugin to change server chat messages for the player
+    default: true
