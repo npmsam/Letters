@@ -20,6 +20,11 @@ messages:
       - "&c%player_name% left the server"
       - "&c%player_name% went offline"
 
+    # Random message from this list will be sent when a player dies.
+    death:
+      - "&c%player_name% met their end"
+      - "&c%death_message%"
+
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
   # and are not related to gameplay events.

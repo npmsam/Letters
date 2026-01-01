@@ -27,3 +27,8 @@ permissions:
   letters.quit:
     description: Allows the plugin to change quit messages for the player
     default: true
+
+  # Default permission for having custom death messages
+  letters.death:
+    description: Allows the plugin to change death messages for the player
+    default: true

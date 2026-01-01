@@ -1,11 +1,13 @@
 package com.sampreet.letters.lib;
 
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.concurrent.ThreadLocalRandom;
 import com.sampreet.letters.Letters;
 import org.bukkit.event.Event;
 import org.bukkit.ChatColor;
+import java.util.Objects;
 import java.util.List;
 
 public class Utils {
@@ -63,12 +65,27 @@ public class Utils {
         // Inserting event-specific placeholders
         if (event!=null) {
             // Replace placeholders for when player joins server
-            if (event instanceof PlayerJoinEvent joinEvent) {
-                message = message.replace("%player_name%", joinEvent.getPlayer().getDisplayName());
-            }
-            // Replace placeholders for when player quits server
-            else if (event instanceof PlayerQuitEvent quitEvent) {
-                message = message.replace("%player_name%", quitEvent.getPlayer().getDisplayName());
+            switch (event) {
+                case PlayerJoinEvent joinEvent ->
+                        message = message.replace("%player_name%", joinEvent.getPlayer().getDisplayName());
+
+                // Replace placeholders for when player quits server
+                case PlayerQuitEvent quitEvent ->
+                        message = message.replace("%player_name%", quitEvent.getPlayer().getDisplayName());
+
+                // Replace placeholders for when player dies
+                case PlayerDeathEvent deathEvent ->
+                        message = message
+                                .replace("%player_name%", deathEvent.getEntity().getDisplayName())
+                                .replace(
+                                        "%death_message%",
+                                        Objects.requireNonNullElse(
+                                                deathEvent.getDeathMessage(),
+                                                "%death_message%"
+                                        )
+                                );
+
+                default -> {}
             }
         }
 
