@@ -4,7 +4,7 @@ main: com.sampreet.letters.Letters
 api-version: '1.21'
 prefix: Letters
 authors: [ Sampreet Singh ]
-description: Lightweight Minecraft server plugin that lets you fully customize system messages like join, leave, death messages with placeholders, colors, and more.
+description: Lightweight Minecraft server plugin that lets you fully customize system messages like join, quit, death messages with placeholders, colors, and more.
 website: https://github.com/npmsam/Letters
 commands:
   # Main command for controlling the plugin
@@ -17,3 +17,13 @@ permissions:
   letters.reload:
     description: Allows reloading of the plugin configuration
     default: op
+
+  # Default permission for having custom join messages
+  letters.join:
+    description: Allows the plugin to change join messages for the player
+    default: true
+
+  # Default permission for having custom quit messages
+  letters.quit:
+    description: Allows the plugin to change quit messages for the player
+    default: true

@@ -3,8 +3,22 @@
 enabled: true
 
 # This contains all configurable messages handled by the plugin,
-# such as join, leave, death, advancement, and system messages.
+# such as join, quit, death, advancement, and system messages.
 messages:
+
+  # These messages are default for everyone unless overridden
+  # by a permission-based or player-specific message.
+  default:
+
+    # Random message from this list will be sent when a player joins the server.
+    join:
+      - "&a%player_name% joined the server"
+      - "&a%player_name% is now online"
+
+    # Random message from this list will be sent when a player quits the server.
+    quit:
+      - "&c%player_name% left the server"
+      - "&c%player_name% went offline"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
