@@ -1,12 +1,14 @@
 package com.sampreet.letters.lib;
 
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.concurrent.ThreadLocalRandom;
+import org.bukkit.command.CommandSender;
 import com.sampreet.letters.Letters;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.ChatColor;
 import java.util.Objects;
@@ -59,7 +61,7 @@ public class Utils {
         return setPlaceholders(message, null);
     }
 
-    // Helper function to insert placeholders into messages
+    // Helper function to insert placeholders and colors into messages
     public String setPlaceholders(String message, Event event) {
         // Insert current plugin version into placeholder
         message = message.replace("%version%", plugin.getDescription().getVersion());
@@ -102,6 +104,39 @@ public class Utils {
 
                 default -> {}
             }
+        }
+
+        // Translate color codes
+        message = ChatColor.translateAlternateColorCodes('&', message);
+
+        // Return the message with the placeholders set
+        return message;
+    }
+
+    // Helper function to insert placeholders and colors into messages for commands
+    public String setPlaceholders(String message, CommandSender sender, Player target, String whisperMessage) {
+        // Insert current plugin version into placeholder
+        message = message.replace("%version%", plugin.getDescription().getVersion());
+
+        // Insert command sender name
+        if (sender instanceof Player player) {
+            message = message
+                    .replace("%sender_name%", player.getDisplayName())
+                    .replace("%player_name%", player.getDisplayName());
+        } else {
+            message = message
+                    .replace("%sender_name%", sender.getName())
+                    .replace("%player_name%", sender.getName());
+        }
+
+        // Insert recipient player name
+        if (target!=null) {
+            message = message.replace("%recipient_name%", target.getDisplayName());
+        }
+
+        // Insert whisper message
+        if (whisperMessage!=null) {
+            message = message.replace("%whisper_message%", whisperMessage);
         }
 
         // Translate color codes

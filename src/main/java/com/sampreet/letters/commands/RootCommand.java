@@ -18,7 +18,7 @@ public class RootCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, @NonNull String [] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         // Check if no subcommand was written.
         if (args.length == 0) {
             sendMessage(sender, "messages.system.commands.no-command");

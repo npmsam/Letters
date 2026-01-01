@@ -35,6 +35,20 @@ messages:
     chat:
       - "%player_name% &7>> &f%chat_message%"
 
+    # These messages are used for private player-to-player messages (whispers),
+    # such as /msg, /tell, or /w.
+    whisper:
+
+      # Random message from this list will be shown to the sender.
+      # Adding too many formats here is not recommended, as it may feel inconsistent.
+      sender:
+        - "Whisper to %recipient_name% &7>> &f%whisper_message%"
+
+      # Random message from this list will be sent to the recipient.
+      # Adding too many formats here is not recommended, as it may feel inconsistent.
+      recipient:
+        - "Whisper from %sender_name% &7>> &f%whisper_message%"
+
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
   # and are not related to gameplay events.
@@ -63,3 +77,12 @@ messages:
 
       # Message sent when the player lacks permission.
       no-permission: "&cYou do not have permission to do that."
+
+      # Message sent when no player is specified.
+      no-player: "&cYou must specify a player."
+
+      # Message sent when an invalid player is specified.
+      invalid-player: "&cUnknown player."
+
+      # Message sent when no message is provided.
+      no-message: "&cYou must provide a message."
