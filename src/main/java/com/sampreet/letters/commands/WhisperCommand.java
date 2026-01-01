@@ -3,12 +3,15 @@ package com.sampreet.letters.commands;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import com.sampreet.letters.Letters;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+import java.util.ArrayList;
 import org.bukkit.Bukkit;
+import java.util.List;
 
-public class WhisperCommand implements CommandExecutor {
+public class WhisperCommand implements CommandExecutor, TabCompleter {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
@@ -85,5 +88,23 @@ public class WhisperCommand implements CommandExecutor {
         recipient.sendMessage(recipientMessage);
 
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias, String @NonNull [] args) {
+        // Create a list to store possible completions
+        List<String> completions = new ArrayList<>();
+
+        // Only provide completions for the first argument (the recipient name)
+        if (args.length == 1) {
+            for (Player player : plugin.getServer().getOnlinePlayers()) {
+                if (player.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
+                    completions.add(player.getName());
+                }
+            }
+        }
+
+        // Return the list of suggestions
+        return completions;
     }
 }
