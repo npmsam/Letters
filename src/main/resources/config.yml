@@ -7,7 +7,7 @@ enabled: true
 messages:
 
   # These messages are default for everyone unless overridden
-  # by a permission-based or player-specific message.
+  # by a group-based or player-specific message.
   default:
 
     # Random message from this list will be sent when a player joins the server.
@@ -50,8 +50,8 @@ messages:
         - "Whisper from %sender_name% &7>> &f%whisper_message%"
 
   # These messages apply only to specific players.
-  # Player-specific messages have the highest priority and will override
-  # both permission-based and default messages.
+  # Player-specific messages have the highest priority.
+  # The keys under this section must be the exact Minecraft username of the player.
   players:
 
     # These messages override all others for this specific player.
@@ -59,7 +59,7 @@ messages:
     example_player:
 
       # You can define overrides here for any message type,
-      # such as leave, death, advancement, chat, or whispers,
+      # such as quit, death, advancement, chat, or whispers,
       # using the same format as the default section.
 
       # A random message from this list will be sent when this specific player joins the server.
@@ -86,6 +86,12 @@ messages:
 
       # Message sent when PlaceholderAPI is not detected.
       placeholder-api-not-found: "PlaceholderAPI not found. Only basic placeholders like %player_name% will work."
+
+      # Message sent when LuckPerms is detected.
+      luck-perms-found: "LuckPerms detected. Group-based messages support enabled."
+
+      # Message sent when LuckPerms is not detected.
+      luck-perms-not-found: "LuckPerms not found. Group-based messages will not work."
 
     # Command-related system messages.
     commands:

@@ -75,23 +75,13 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // Try getting the player-specific message from config.yml
-        String senderMessage = plugin.getUtils().getRandomMessage("messages.players." + sender.getName() + ".whisper.sender");
-        // If none found, fall back to default message
-        if (senderMessage==null) {
-            // Retrieve a random message from config.yml
-            senderMessage = plugin.getUtils().getRandomMessage("messages.default.whisper.sender");
-        }
+        // Retrieve a random message from config.yml
+        String senderMessage = plugin.getUtils().resolveRandomMessage((Player) sender, "whisper.sender");
         // Insert placeholders and colors into the message
         senderMessage = plugin.getUtils().setPlaceholders(senderMessage, sender, recipient, whisperMessage, Target.SENDER);
 
-        // Try getting the player-specific message from config.yml
-        String recipientMessage = plugin.getUtils().getRandomMessage("messages.players." + recipient.getName() + ".whisper.recipient");
-        // If none found, fall back to default message
-        if (recipientMessage==null) {
-            // Retrieve a random message from config.yml
-            recipientMessage = plugin.getUtils().getRandomMessage("messages.default.whisper.recipient");
-        }
+        // Retrieve a random message from config.yml
+        String recipientMessage = plugin.getUtils().resolveRandomMessage(recipient, "whisper.recipient");
         // Insert placeholders and colors into the message
         recipientMessage = plugin.getUtils().setPlaceholders(recipientMessage, sender, recipient, whisperMessage, Target.RECIPIENT);
 

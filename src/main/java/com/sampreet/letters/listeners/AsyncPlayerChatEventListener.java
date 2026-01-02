@@ -20,13 +20,8 @@ public class AsyncPlayerChatEventListener implements Listener {
         if (!event.getPlayer().hasPermission("letters.chat"))
             return;
 
-        // Try getting the player-specific message from config.yml
-        String chatMessage = plugin.getUtils().getRandomMessage("messages.players." + event.getPlayer().getName() + ".chat");
-        // If none found, fall back to default message
-        if (chatMessage==null) {
-            // Retrieve a random message from config.yml
-            chatMessage = plugin.getUtils().getRandomMessage("messages.default.chat");
-        }
+        // Retrieve a random message from config.yml
+        String chatMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "chat");
         // Insert placeholders and colors into the message
         chatMessage = plugin.getUtils().setPlaceholders(chatMessage, event);
 

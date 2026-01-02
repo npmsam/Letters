@@ -29,13 +29,8 @@ public class PlayerAdvancementDoneListener implements Listener {
         // Disable game-rule so the vanilla message does not show
         disableVanillaAdvancementMessage(event);
 
-        // Try getting the player-specific message from config.yml
-        String advancementMessage = plugin.getUtils().getRandomMessage("messages.players." + event.getPlayer().getName() + ".advancement");
-        // If none found, fall back to default message
-        if (advancementMessage==null) {
-            // Retrieve a random message from config.yml
-            advancementMessage = plugin.getUtils().getRandomMessage("messages.default.advancement");
-        }
+        // Retrieve a random message from config.yml
+        String advancementMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "advancement");
         // Insert placeholders and colors into the message
         advancementMessage = plugin.getUtils().setPlaceholders(advancementMessage, event);
 

@@ -25,8 +25,7 @@ public class Utils {
         this.plugin = plugin;
     }
 
-    // Helper function to retrieve a message from config.yml and skip if null or
-    // empty
+    // Helper function to retrieve a message from config.yml and skip if null or empty
     public String getMessage(String path) {
         String message = plugin.getConfig().getString(path);
 
@@ -171,6 +170,28 @@ public class Utils {
         message = ChatColor.translateAlternateColorCodes('&', message);
 
         // Return the message with the placeholders and colors set
+        return message;
+    }
+
+    // Helper function retrieve an appropriate message based on player's name and primary group
+    public String resolveRandomMessage(Player player, String key) {
+        // Try getting the player-specific message from config.yml
+        String message = plugin.getUtils().getRandomMessage("messages.players." + player.getName() + "." + key);
+
+        // If no player-specific message was found, then check for primary group
+        if (message==null && plugin.getLuckPermsHook()!=null) {
+            // Use the LuckPermsHook to check for player's primary group
+            String primaryGroup = plugin.getLuckPermsHook().playerPrimaryGroup(player);
+            message = plugin.getUtils().getRandomMessage("messages.groups." + primaryGroup + "." + key);
+        }
+
+        // If none found, fall back to default message
+        if (message==null) {
+            // Retrieve a random message from config.yml
+            message = plugin.getUtils().getRandomMessage("messages.default." + key);
+        }
+
+        // Return the retrieved message
         return message;
     }
 }

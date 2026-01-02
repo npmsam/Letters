@@ -20,13 +20,8 @@ public class PlayerQuitListener implements Listener {
         if (!event.getPlayer().hasPermission("letters.quit"))
             return;
 
-        // Try getting the player-specific message from config.yml
-        String quitMessage = plugin.getUtils().getRandomMessage("messages.players." + event.getPlayer().getName() + ".quit");
-        // If none found, fall back to default message
-        if (quitMessage==null) {
-            // Retrieve a random message from config.yml
-            quitMessage = plugin.getUtils().getRandomMessage("messages.default.quit");
-        }
+        // Retrieve a random message from config.yml
+        String quitMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "quit");
         // Insert placeholders and colors into the message
         quitMessage = plugin.getUtils().setPlaceholders(quitMessage, event);
 

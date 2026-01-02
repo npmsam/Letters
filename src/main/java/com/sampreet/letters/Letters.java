@@ -2,6 +2,7 @@ package com.sampreet.letters;
 
 import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.commands.RootCommand;
+import com.sampreet.letters.lib.LuckPermsHook;
 import org.bukkit.plugin.java.JavaPlugin;
 import com.sampreet.letters.listeners.*;
 import com.sampreet.letters.lib.Utils;
@@ -11,6 +12,8 @@ import org.bukkit.Bukkit;
 public final class Letters extends JavaPlugin {
     // Store utils class instance for accessing helper functions
     private Utils utils;
+    // Store the hook for LuckPerms for accessing helper function
+    private LuckPermsHook luckPermsHook;
 
     @Override
     public void onEnable() {
@@ -29,19 +32,37 @@ public final class Letters extends JavaPlugin {
         // Check if PlaceholderAPI is present
         boolean PAPIFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
-        // Store config.yml message path depending on whether PlaceholderAPI is present
-        // or not
-        String path = PAPIFound
+        // Store config.yml message path depending on whether PlaceholderAPI is present or not
+        String PAPIMessagePath = PAPIFound
                 ? "messages.system.lifecycle.placeholder-api-found"
                 : "messages.system.lifecycle.placeholder-api-not-found";
 
         // Log whether PlaceholderAPI was found or not
-        String message = utils.getMessage(path);
-        if (message != null && !message.trim().isEmpty()) {
+        String PAPIMessage = utils.getMessage(PAPIMessagePath);
+        if (PAPIMessage != null && !PAPIMessage.trim().isEmpty()) {
             if (PAPIFound) {
-                getLogger().info(message);
+                getLogger().info(PAPIMessage);
             } else {
-                getLogger().warning(message);
+                getLogger().warning(PAPIMessage);
+            }
+        }
+
+        // Check if LuckPerms is present
+        boolean LuckPermsFound = Bukkit.getPluginManager().getPlugin("LuckPerms") != null;
+
+        // Store config.yml message path depending on whether LuckPerms is present or not
+        String LuckPermsMessagePath = LuckPermsFound
+                ? "messages.system.lifecycle.luck-perms-found"
+                : "messages.system.lifecycle.luck-perms-not-found";
+
+        // Log whether LuckPerms was found or not
+        String LuckPermsMessage = utils.getMessage(LuckPermsMessagePath);
+        if (LuckPermsMessage != null && !LuckPermsMessage.trim().isEmpty()) {
+            if (LuckPermsFound) {
+                luckPermsHook = new LuckPermsHook();
+                getLogger().info(LuckPermsMessage);
+            } else {
+                getLogger().warning(LuckPermsMessage);
             }
         }
 
@@ -87,5 +108,10 @@ public final class Letters extends JavaPlugin {
     // Getter function to make utils available outside main class
     public Utils getUtils() {
         return utils;
+    }
+
+    // Getter function to make LuckPerms hook available outside main class
+    public LuckPermsHook getLuckPermsHook() {
+        return luckPermsHook;
     }
 }
