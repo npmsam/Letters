@@ -17,7 +17,8 @@ public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(@NonNull PlayerDeathEvent event) {
         // Check if the player has the permission to have custom death messages
-        if (!event.getEntity().hasPermission("letters.death")) return;
+        if (!event.getEntity().hasPermission("letters.death"))
+            return;
 
         // Retrieve a random message from config.yml
         String deathMessage = plugin.getUtils().getRandomMessage("messages.default.death");

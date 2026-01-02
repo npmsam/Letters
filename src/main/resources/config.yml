@@ -63,6 +63,12 @@ messages:
       # Message sent to the console when the plugin is disabled.
       disable: "Disabled Letters v%version%"
 
+      # Message sent when PlaceholderAPI is detected.
+      placeholder-api-found: "PlaceholderAPI detected. Full placeholder support enabled."
+
+      # Message sent when PlaceholderAPI is not detected.
+      placeholder-api-not-found: "PlaceholderAPI not found. Only basic placeholders like %player_name% will work."
+
     # Command-related system messages.
     commands:
 

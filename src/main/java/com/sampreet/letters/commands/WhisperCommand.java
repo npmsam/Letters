@@ -19,15 +19,21 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         this.plugin = plugin;
     }
 
+    // Defines whether the whisper message format is for the sender or the recipient.
+    public enum Target {
+        SENDER,
+        RECIPIENT
+    }
+
     @Override
-    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label,
+            String @NonNull [] args) {
         // Check if the player has the permission to have custom whisper messages
         if (!sender.hasPermission("letters.whisper")) {
             // Redirect to vanilla /msg
             Bukkit.dispatchCommand(
                     sender,
-                    "minecraft:msg" + (args.length == 0 ? "" : " " + String.join(" ", args))
-            );
+                    "minecraft:msg" + (args.length == 0 ? "" : " " + String.join(" ", args)));
             return true;
         }
 
@@ -35,8 +41,7 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         if (args.length == 0) {
             // Send error message from config.yml
             sender.sendMessage(plugin.getUtils().setPlaceholders(
-                    plugin.getUtils().getMessage("messages.system.commands.no-player")
-            ));
+                    plugin.getUtils().getMessage("messages.system.commands.no-player")));
             return true;
         }
 
@@ -45,8 +50,7 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         if (recipient == null) {
             // Send error message from config.yml
             sender.sendMessage(plugin.getUtils().setPlaceholders(
-                    plugin.getUtils().getMessage("messages.system.commands.invalid-player")
-            ));
+                    plugin.getUtils().getMessage("messages.system.commands.invalid-player")));
             return true;
         }
 
@@ -54,8 +58,7 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         if (args.length < 2) {
             // Send error message from config.yml
             sender.sendMessage(plugin.getUtils().setPlaceholders(
-                    plugin.getUtils().getMessage("messages.system.commands.no-message")
-            ));
+                    plugin.getUtils().getMessage("messages.system.commands.no-message")));
             return true;
         }
 
@@ -68,20 +71,19 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         if (whisperMessage.isEmpty()) {
             // Send error message from config.yml
             sender.sendMessage(plugin.getUtils().setPlaceholders(
-                    plugin.getUtils().getMessage("messages.system.commands.no-message")
-            ));
+                    plugin.getUtils().getMessage("messages.system.commands.no-message")));
             return true;
         }
 
         // Build message shown to the sender
         String senderMessage = plugin.getUtils().getRandomMessage("messages.default.whisper.sender");
         // Insert placeholders and colors into the message
-        senderMessage = plugin.getUtils().setPlaceholders(senderMessage, sender, recipient, whisperMessage);
+        senderMessage = plugin.getUtils().setPlaceholders(senderMessage, sender, recipient, whisperMessage, Target.SENDER);
 
         // Build message shown to the recipient
         String recipientMessage = plugin.getUtils().getRandomMessage("messages.default.whisper.recipient");
         // Insert placeholders and colors into the message
-        recipientMessage = plugin.getUtils().setPlaceholders(recipientMessage, sender, recipient, whisperMessage);
+        recipientMessage = plugin.getUtils().setPlaceholders(recipientMessage, sender, recipient, whisperMessage, Target.RECIPIENT);
 
         // Send formatted whisper messages
         sender.sendMessage(senderMessage);
@@ -91,7 +93,8 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias, String @NonNull [] args) {
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias,
+            String @NonNull [] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 

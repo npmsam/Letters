@@ -19,10 +19,12 @@ public class PlayerAdvancementDoneListener implements Listener {
     @EventHandler
     public void onPlayerAdvancementDone(@NonNull PlayerAdvancementDoneEvent event) {
         // Check if the player has the permission to have custom advancement messages
-        if (!event.getPlayer().hasPermission("letters.advancement")) return;
+        if (!event.getPlayer().hasPermission("letters.advancement"))
+            return;
 
         // Return if the advancement has no display
-        if (event.getAdvancement().getDisplay() == null) return;
+        if (event.getAdvancement().getDisplay() == null)
+            return;
 
         // Disable game-rule so the vanilla message does not show
         disableVanillaAdvancementMessage(event);
@@ -41,19 +43,20 @@ public class PlayerAdvancementDoneListener implements Listener {
     private void disableVanillaAdvancementMessage(PlayerAdvancementDoneEvent event) {
         GameRule<Boolean> advancementRule = null;
 
-        for (String fieldName : new String[]{"ANNOUNCE_ADVANCEMENTS", "SHOW_ADVANCEMENT_MESSAGES"}) {
+        for (String fieldName : new String[] { "ANNOUNCE_ADVANCEMENTS", "SHOW_ADVANCEMENT_MESSAGES" }) {
             try {
                 Field field = GameRule.class.getField(fieldName);
                 advancementRule = (GameRule<Boolean>) field.get(null);
                 break;
-            } catch (NoSuchFieldException | IllegalAccessException ignored) {}
+            } catch (NoSuchFieldException | IllegalAccessException ignored) {
+            }
         }
 
-        if (advancementRule == null) return;
+        if (advancementRule == null)
+            return;
 
         if (Boolean.TRUE.equals(
-                event.getPlayer().getWorld().getGameRuleValue(advancementRule)
-        )) {
+                event.getPlayer().getWorld().getGameRuleValue(advancementRule))) {
             event.getPlayer().getWorld().setGameRule(advancementRule, false);
         }
     }

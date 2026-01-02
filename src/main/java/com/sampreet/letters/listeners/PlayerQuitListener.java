@@ -13,11 +13,12 @@ public class PlayerQuitListener implements Listener {
     public PlayerQuitListener(Letters plugin) {
         this.plugin = plugin;
     }
-    
+
     @EventHandler
     public void onPlayerQuit(@NonNull PlayerQuitEvent event) {
         // Check if the player has the permission to have custom quit messages
-        if (!event.getPlayer().hasPermission("letters.quit")) return;
+        if (!event.getPlayer().hasPermission("letters.quit"))
+            return;
 
         // Retrieve a random message from config.yml
         String quitMessage = plugin.getUtils().getRandomMessage("messages.default.quit");

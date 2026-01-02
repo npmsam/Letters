@@ -17,7 +17,8 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(@NonNull PlayerJoinEvent event) {
         // Check if the player has the permission to have custom join messages
-        if (!event.getPlayer().hasPermission("letters.join")) return;
+        if (!event.getPlayer().hasPermission("letters.join"))
+            return;
 
         // Retrieve a random message from config.yml
         String joinMessage = plugin.getUtils().getRandomMessage("messages.default.join");

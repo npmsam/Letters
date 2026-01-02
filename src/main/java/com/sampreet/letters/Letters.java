@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.sampreet.letters.listeners.*;
 import com.sampreet.letters.lib.Utils;
 import java.util.Objects;
+import org.bukkit.Bukkit;
 
 public final class Letters extends JavaPlugin {
     // Store utils class instance for accessing helper functions
@@ -24,6 +25,25 @@ public final class Letters extends JavaPlugin {
 
         // Initialize the Utils class with the plugin instance
         utils = new Utils(this);
+
+        // Check if PlaceholderAPI is present
+        boolean PAPIFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+
+        // Store config.yml message path depending on whether PlaceholderAPI is present
+        // or not
+        String path = PAPIFound
+                ? "messages.system.lifecycle.placeholder-api-found"
+                : "messages.system.lifecycle.placeholder-api-not-found";
+
+        // Log whether PlaceholderAPI was found or not
+        String message = utils.getMessage(path);
+        if (message != null && !message.trim().isEmpty()) {
+            if (PAPIFound) {
+                getLogger().info(message);
+            } else {
+                getLogger().warning(message);
+            }
+        }
 
         // Register the root command executor
         RootCommand rootCommand = new RootCommand(this);
@@ -46,7 +66,7 @@ public final class Letters extends JavaPlugin {
 
         // Log that the plugin has successfully loaded and is ready
         String enableMessage = utils.getMessage("messages.system.lifecycle.enable");
-        if (enableMessage!=null) {
+        if (enableMessage != null) {
             // Insert current plugin version into placeholder
             enableMessage = utils.setPlaceholders(enableMessage);
             getLogger().info(enableMessage);
@@ -57,7 +77,7 @@ public final class Letters extends JavaPlugin {
     public void onDisable() {
         // Log that the plugin has been disabled
         String disableMessage = utils.getMessage("messages.system.lifecycle.disable");
-        if (disableMessage!=null) {
+        if (disableMessage != null) {
             // Insert current plugin version into placeholder
             disableMessage = utils.setPlaceholders(disableMessage);
             getLogger().info(disableMessage);

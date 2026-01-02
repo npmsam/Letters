@@ -18,7 +18,8 @@ public class RootCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label,
+            String @NonNull [] args) {
         // Check if no subcommand was written.
         if (args.length == 0) {
             sendMessage(sender, "messages.system.commands.no-command");
@@ -44,7 +45,8 @@ public class RootCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias, @NonNull String [] args) {
+    public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias,
+            @NonNull String[] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 
@@ -65,7 +67,7 @@ public class RootCommand implements CommandExecutor, TabCompleter {
         String message = plugin.getUtils().getMessage(path);
 
         // Return if no message is set in config.yml
-        if (message==null) {
+        if (message == null) {
             return;
         }
 

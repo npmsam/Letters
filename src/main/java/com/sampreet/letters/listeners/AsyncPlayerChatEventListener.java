@@ -17,7 +17,8 @@ public class AsyncPlayerChatEventListener implements Listener {
     @EventHandler
     public void onAsyncPlayerChatEvent(@NonNull AsyncPlayerChatEvent event) {
         // Check if the player has the permission to have custom server chat messages
-        if (!event.getPlayer().hasPermission("letters.chat")) return;
+        if (!event.getPlayer().hasPermission("letters.chat"))
+            return;
 
         // Retrieve a random message from config.yml
         String chatMessage = plugin.getUtils().getRandomMessage("messages.default.chat");
