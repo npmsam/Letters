@@ -20,8 +20,13 @@ public class PlayerJoinListener implements Listener {
         if (!event.getPlayer().hasPermission("letters.join"))
             return;
 
-        // Retrieve a random message from config.yml
-        String joinMessage = plugin.getUtils().getRandomMessage("messages.default.join");
+        // Try getting the player-specific message from config.yml
+        String joinMessage = plugin.getUtils().getRandomMessage("messages.players." + event.getPlayer().getName() + ".join");
+        // If none found, fall back to default message
+        if (joinMessage==null) {
+            // Retrieve a random message from config.yml
+            joinMessage = plugin.getUtils().getRandomMessage("messages.default.join");
+        }
         // Insert placeholders and colors into the message
         joinMessage = plugin.getUtils().setPlaceholders(joinMessage, event);
 

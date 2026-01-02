@@ -64,6 +64,42 @@ public class Utils {
         return setPlaceholders(message, null);
     }
 
+    // Helper function to insert placeholders and colors into messages for commands
+    public String setPlaceholders(String message, CommandSender sender, Player recipient, String whisperMessage, WhisperCommand.Target target) {
+        // Insert command sender name
+        if (sender instanceof Player player) {
+            message = message
+                    .replace(Placeholders.SENDER_NAME.key(), player.getDisplayName());
+        } else {
+            message = message
+                    .replace(Placeholders.SENDER_NAME.key(), sender.getName());
+        }
+
+        // Insert recipient player name
+        if (recipient != null) {
+            message = message.replace(Placeholders.RECIPIENT_NAME.key(), recipient.getDisplayName());
+        }
+
+        // Insert whisper message
+        if (whisperMessage != null) {
+            message = message.replace(Placeholders.WHISPER_MESSAGE.key(), whisperMessage);
+        }
+
+        // Decide PlaceholderAPI context based on target
+        Player PAPIContext = switch (target) {
+            case SENDER -> recipient;
+            case RECIPIENT -> sender instanceof Player player ? player : null;
+        };
+
+        // Apply PlaceholderAPI placeholders if installed
+        if (PAPIContext != null && Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            message = PlaceholderAPI.setPlaceholders(PAPIContext, message);
+        }
+
+        // Return the message with the placeholders and colors set
+        return setPlaceholders(message, null);
+    }
+
     // Helper function to insert placeholders and colors into messages
     public String setPlaceholders(String message, Event event) {
         // Insert current plugin version into placeholder
@@ -134,50 +170,7 @@ public class Utils {
         // Translate color codes
         message = ChatColor.translateAlternateColorCodes('&', message);
 
-        // Return the message with the placeholders set
-        return message;
-    }
-
-    // Helper function to insert placeholders and colors into messages for commands
-    public String setPlaceholders(String message, CommandSender sender, Player recipient, String whisperMessage,
-            WhisperCommand.Target target) {
-        // Insert current plugin version into placeholder
-        message = message.replace(Placeholders.PLUGIN_VERSION.key(), plugin.getDescription().getVersion());
-
-        // Insert command sender name
-        if (sender instanceof Player player) {
-            message = message
-                    .replace(Placeholders.SENDER_NAME.key(), player.getDisplayName());
-        } else {
-            message = message
-                    .replace(Placeholders.SENDER_NAME.key(), sender.getName());
-        }
-
-        // Insert recipient player name
-        if (recipient != null) {
-            message = message.replace(Placeholders.RECIPIENT_NAME.key(), recipient.getDisplayName());
-        }
-
-        // Insert whisper message
-        if (whisperMessage != null) {
-            message = message.replace(Placeholders.WHISPER_MESSAGE.key(), whisperMessage);
-        }
-
-        // Decide PlaceholderAPI context based on target
-        Player PAPIContext = switch (target) {
-            case SENDER -> sender instanceof Player player ? player : null;
-            case RECIPIENT -> recipient;
-        };
-
-        // Apply PlaceholderAPI placeholders if installed
-        if (PAPIContext != null && Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            message = PlaceholderAPI.setPlaceholders(PAPIContext, message);
-        }
-
-        // Translate color codes
-        message = ChatColor.translateAlternateColorCodes('&', message);
-
-        // Return the message with the placeholders set
+        // Return the message with the placeholders and colors set
         return message;
     }
 }

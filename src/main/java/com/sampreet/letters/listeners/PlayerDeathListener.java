@@ -20,8 +20,13 @@ public class PlayerDeathListener implements Listener {
         if (!event.getEntity().hasPermission("letters.death"))
             return;
 
-        // Retrieve a random message from config.yml
-        String deathMessage = plugin.getUtils().getRandomMessage("messages.default.death");
+        // Try getting the player-specific message from config.yml
+        String deathMessage = plugin.getUtils().getRandomMessage("messages.players." + event.getEntity().getName() + ".death");
+        // If none found, fall back to default message
+        if (deathMessage==null) {
+            // Retrieve a random message from config.yml
+            deathMessage = plugin.getUtils().getRandomMessage("messages.default.death");
+        }
         // Insert placeholders and colors into the message
         deathMessage = plugin.getUtils().setPlaceholders(deathMessage, event);
 
