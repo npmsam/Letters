@@ -1,10 +1,10 @@
 package com.sampreet.letters.listeners;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.EventHandler;
 import com.sampreet.letters.Letters;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class PlayerQuitListener implements Listener {
     // Store plugin instance for accessing config

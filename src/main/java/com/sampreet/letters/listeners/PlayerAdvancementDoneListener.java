@@ -1,12 +1,13 @@
 package com.sampreet.letters.listeners;
 
+import com.sampreet.letters.Letters;
+import org.bukkit.GameRule;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.bukkit.event.EventHandler;
-import com.sampreet.letters.Letters;
-import org.bukkit.event.Listener;
+
 import java.lang.reflect.Field;
-import org.bukkit.GameRule;
 
 public class PlayerAdvancementDoneListener implements Listener {
     // Store plugin instance for accessing config
@@ -43,7 +44,7 @@ public class PlayerAdvancementDoneListener implements Listener {
     private void disableVanillaAdvancementMessage(PlayerAdvancementDoneEvent event) {
         GameRule<Boolean> advancementRule = null;
 
-        for (String fieldName : new String[] { "ANNOUNCE_ADVANCEMENTS", "SHOW_ADVANCEMENT_MESSAGES" }) {
+        for (String fieldName : new String[]{"ANNOUNCE_ADVANCEMENTS", "SHOW_ADVANCEMENT_MESSAGES"}) {
             try {
                 Field field = GameRule.class.getField(fieldName);
                 advancementRule = (GameRule<Boolean>) field.get(null);

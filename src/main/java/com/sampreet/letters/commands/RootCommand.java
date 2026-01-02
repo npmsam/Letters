@@ -1,11 +1,12 @@
 package com.sampreet.letters.commands;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import com.sampreet.letters.Letters;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import com.sampreet.letters.Letters;
-import org.bukkit.command.Command;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class RootCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label,
-            String @NonNull [] args) {
+                             String @NonNull [] args) {
         // Check if no subcommand was written.
         if (args.length == 0) {
             sendMessage(sender, "messages.system.commands.no-command");
@@ -46,7 +47,7 @@ public class RootCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias,
-            @NonNull String[] args) {
+                                      @NonNull String[] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 

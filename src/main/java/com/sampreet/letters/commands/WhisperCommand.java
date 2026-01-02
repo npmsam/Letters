@@ -1,14 +1,15 @@
 package com.sampreet.letters.commands;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import com.sampreet.letters.Letters;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import com.sampreet.letters.Letters;
-import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.util.ArrayList;
-import org.bukkit.Bukkit;
 import java.util.List;
 
 public class WhisperCommand implements CommandExecutor, TabCompleter {
@@ -19,15 +20,9 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         this.plugin = plugin;
     }
 
-    // Defines whether the whisper message format is for the sender or the recipient.
-    public enum Target {
-        SENDER,
-        RECIPIENT
-    }
-
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label,
-            String @NonNull [] args) {
+                             String @NonNull [] args) {
         // Check if the player has the permission to have custom whisper messages
         if (!sender.hasPermission("letters.whisper")) {
             // Redirect to vanilla /msg
@@ -94,7 +89,7 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String alias,
-            String @NonNull [] args) {
+                                      String @NonNull [] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 
@@ -109,5 +104,11 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
 
         // Return the list of suggestions
         return completions;
+    }
+
+    // Defines whether the whisper message format is for the sender or the recipient.
+    public enum Target {
+        SENDER,
+        RECIPIENT
     }
 }

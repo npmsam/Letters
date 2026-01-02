@@ -49,6 +49,24 @@ messages:
       recipient:
         - "Whisper from %sender_name% &7>> &f%whisper_message%"
 
+  # These messages apply only apply to players in specific groups.
+  # Group-based messages have the second-highest priority.
+  # The keys under this section must be the exact group names defined in LuckPerms.
+  groups:
+
+    # These messages override default messages for players in the admin group in LuckPerms.
+    # Only players in the admin group will have these custom messages.
+    admin:
+
+      # You can define overrides here for any message type,
+      # such as quit, death, advancement, chat, or whispers,
+      # using the same format as the default section.
+
+      # A random message from this list will be sent when a player in the admin group joins the server.
+      join:
+        - "&cAdmin %player_name% has joined the server"
+        - "&cAdmin %player_name% is now online"
+
   # These messages apply only to specific players.
   # Player-specific messages have the highest priority.
   # The keys under this section must be the exact Minecraft username of the player.

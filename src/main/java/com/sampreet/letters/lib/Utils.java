@@ -1,21 +1,22 @@
 package com.sampreet.letters.lib;
 
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
-import com.sampreet.letters.commands.WhisperCommand;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import java.util.concurrent.ThreadLocalRandom;
-import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.command.CommandSender;
 import com.sampreet.letters.Letters;
+import com.sampreet.letters.commands.WhisperCommand;
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.ChatColor;
-import org.bukkit.Bukkit;
-import java.util.Objects;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Utils {
     // Store plugin instance for accessing config
@@ -179,14 +180,14 @@ public class Utils {
         String message = plugin.getUtils().getRandomMessage("messages.players." + player.getName() + "." + key);
 
         // If no player-specific message was found, then check for primary group
-        if (message==null && plugin.getLuckPermsHook()!=null) {
+        if (message == null && plugin.getLuckPermsHook() != null) {
             // Use the LuckPermsHook to check for player's primary group
             String primaryGroup = plugin.getLuckPermsHook().playerPrimaryGroup(player);
             message = plugin.getUtils().getRandomMessage("messages.groups." + primaryGroup + "." + key);
         }
 
         // If none found, fall back to default message
-        if (message==null) {
+        if (message == null) {
             // Retrieve a random message from config.yml
             message = plugin.getUtils().getRandomMessage("messages.default." + key);
         }

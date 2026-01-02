@@ -1,13 +1,14 @@
 package com.sampreet.letters;
 
-import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.commands.RootCommand;
+import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.lib.LuckPermsHook;
-import org.bukkit.plugin.java.JavaPlugin;
-import com.sampreet.letters.listeners.*;
 import com.sampreet.letters.lib.Utils;
-import java.util.Objects;
+import com.sampreet.letters.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class Letters extends JavaPlugin {
     // Store utils class instance for accessing helper functions
