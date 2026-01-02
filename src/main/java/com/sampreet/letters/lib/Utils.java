@@ -67,14 +67,14 @@ public class Utils {
     // Helper function to insert placeholders and colors into messages
     public String setPlaceholders(String message, Event event) {
         // Insert current plugin version into placeholder
-        message = message.replace("%version%", plugin.getDescription().getVersion());
+        message = message.replace(Placeholders.PLUGIN_VERSION.key(), plugin.getDescription().getVersion());
 
         // Inserting event-specific placeholders
         if (event != null) {
             // Replace placeholders for when player joins server
             switch (event) {
                 case PlayerJoinEvent joinEvent -> {
-                    message = message.replace("%player_name%", joinEvent.getPlayer().getDisplayName());
+                    message = message.replace(Placeholders.PLAYER_NAME.key(), joinEvent.getPlayer().getDisplayName());
                     // Apply PlaceholderAPI placeholders if installed
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
                         message = PlaceholderAPI.setPlaceholders(joinEvent.getPlayer(), message);
@@ -83,7 +83,7 @@ public class Utils {
 
                 // Replace placeholders for when player quits server
                 case PlayerQuitEvent quitEvent -> {
-                    message = message.replace("%player_name%", quitEvent.getPlayer().getDisplayName());
+                    message = message.replace(Placeholders.PLAYER_NAME.key(), quitEvent.getPlayer().getDisplayName());
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
                         message = PlaceholderAPI.setPlaceholders(quitEvent.getPlayer(), message);
                     }
@@ -92,12 +92,12 @@ public class Utils {
                 // Replace placeholders for when player dies
                 case PlayerDeathEvent deathEvent -> {
                     message = message
-                            .replace("%player_name%", deathEvent.getEntity().getDisplayName())
+                            .replace(Placeholders.PLAYER_NAME.key(), deathEvent.getEntity().getDisplayName())
                             .replace(
-                                    "%death_message%",
+                                    Placeholders.DEATH_MESSAGE.key(),
                                     Objects.requireNonNullElse(
                                             deathEvent.getDeathMessage(),
-                                            "%death_message%"));
+                                            Placeholders.DEATH_MESSAGE.key()));
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
                         message = PlaceholderAPI.setPlaceholders(deathEvent.getEntity(), message);
                     }
@@ -106,10 +106,10 @@ public class Utils {
                 // Replace placeholders for when player makes an advancement
                 case PlayerAdvancementDoneEvent advancementEvent -> {
                     message = message
-                            .replace("%player_name%", advancementEvent.getPlayer().getDisplayName())
-                            .replace("%advancement_name%",
+                            .replace(Placeholders.PLAYER_NAME.key(), advancementEvent.getPlayer().getDisplayName())
+                            .replace(Placeholders.ADVANCEMENT_NAME.key(),
                                     Objects.requireNonNull(advancementEvent.getAdvancement().getDisplay()).getTitle())
-                            .replace("%advancement_color%", "&"
+                            .replace(Placeholders.ADVANCEMENT_COLOR.key(), "&"
                                     + advancementEvent.getAdvancement().getDisplay().getType().getColor().getChar());
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
                         message = PlaceholderAPI.setPlaceholders(advancementEvent.getPlayer(), message);
@@ -119,8 +119,8 @@ public class Utils {
                 // Replace placeholders for when player sends a message in the server chat
                 case AsyncPlayerChatEvent asyncPlayerChatEvent -> {
                     message = message
-                            .replace("%player_name%", "%1$s")
-                            .replace("%chat_message%", "%2$s");
+                            .replace(Placeholders.PLAYER_NAME.key(), "%1$s")
+                            .replace(Placeholders.CHAT_MESSAGE.key(), "%2$s");
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
                         message = PlaceholderAPI.setPlaceholders(asyncPlayerChatEvent.getPlayer(), message);
                     }
@@ -142,25 +142,25 @@ public class Utils {
     public String setPlaceholders(String message, CommandSender sender, Player recipient, String whisperMessage,
             WhisperCommand.Target target) {
         // Insert current plugin version into placeholder
-        message = message.replace("%version%", plugin.getDescription().getVersion());
+        message = message.replace(Placeholders.PLUGIN_VERSION.key(), plugin.getDescription().getVersion());
 
         // Insert command sender name
         if (sender instanceof Player player) {
             message = message
-                    .replace("%sender_name%", player.getDisplayName());
+                    .replace(Placeholders.SENDER_NAME.key(), player.getDisplayName());
         } else {
             message = message
-                    .replace("%sender_name%", sender.getName());
+                    .replace(Placeholders.SENDER_NAME.key(), sender.getName());
         }
 
         // Insert recipient player name
         if (recipient != null) {
-            message = message.replace("%recipient_name%", recipient.getDisplayName());
+            message = message.replace(Placeholders.RECIPIENT_NAME.key(), recipient.getDisplayName());
         }
 
         // Insert whisper message
         if (whisperMessage != null) {
-            message = message.replace("%whisper_message%", whisperMessage);
+            message = message.replace(Placeholders.WHISPER_MESSAGE.key(), whisperMessage);
         }
 
         // Decide PlaceholderAPI context based on target

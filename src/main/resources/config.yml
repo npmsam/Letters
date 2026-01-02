@@ -58,10 +58,10 @@ messages:
     lifecycle:
 
       # Message sent to the console when the plugin is enabled.
-      enable: "Enabled Letters v%version%"
+      enable: "Enabled Letters v%plugin_version%"
 
       # Message sent to the console when the plugin is disabled.
-      disable: "Disabled Letters v%version%"
+      disable: "Disabled Letters v%plugin_version%"
 
       # Message sent when PlaceholderAPI is detected.
       placeholder-api-found: "PlaceholderAPI detected. Full placeholder support enabled."
@@ -73,7 +73,7 @@ messages:
     commands:
 
       # Message sent when the plugin is reloaded.
-      reload: "&aReloaded Letters v%version%"
+      reload: "&aReloaded Letters v%plugin_version%"
 
       # Message sent when no subcommand is used.
       no-command: "&cYou must specify a subcommand."
