@@ -49,7 +49,7 @@ messages:
       recipient:
         - "Whisper from %sender_name% &7>> &f%whisper_message%"
 
-  # These messages apply only apply to players in specific groups.
+  # These messages only apply to players in specific groups.
   # Group-based messages have the second-highest priority.
   # The keys under this section must be the exact group names defined in LuckPerms.
   groups:
@@ -72,18 +72,18 @@ messages:
   # The keys under this section must be the exact Minecraft username of the player.
   players:
 
-    # These messages override all others for this specific player.
-    # Only this player will have these custom messages.
-    example_player:
+    # These messages override all others for the player with the username 'Notch'.
+    # Only the player with the username 'Notch' will have these custom messages.
+    Notch:
 
       # You can define overrides here for any message type,
       # such as quit, death, advancement, chat, or whispers,
       # using the same format as the default section.
 
-      # A random message from this list will be sent when this specific player joins the server.
+      # A random message from this list will be sent when the player with the username 'Notch' joins the server.
       join:
-        - "&dExample player has joined the server"
-        - "&dExample player is now online"
+        - "&dNotch has joined the server"
+        - "&dNotch is now online"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
