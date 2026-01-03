@@ -24,6 +24,8 @@ public class AsyncPlayerChatEventListener implements Listener {
         String chatMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "chat");
         // Insert placeholders and colors into the message
         chatMessage = plugin.getUtils().setPlaceholders(chatMessage, event);
+        // Translate MiniMessage and legacy color codes to a string
+        chatMessage = plugin.getUtils().translateColors(chatMessage);
 
         // Broadcast the custom message to the server
         event.setFormat(chatMessage);

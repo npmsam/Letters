@@ -24,6 +24,8 @@ public class PlayerJoinListener implements Listener {
         String joinMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "join");
         // Insert placeholders and colors into the message
         joinMessage = plugin.getUtils().setPlaceholders(joinMessage, event);
+        // Translate MiniMessage and legacy color codes to a string
+        joinMessage = plugin.getUtils().translateColors(joinMessage);
 
         // Set the custom message as the system message
         event.setJoinMessage(joinMessage);

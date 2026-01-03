@@ -24,6 +24,8 @@ public class PlayerQuitListener implements Listener {
         String quitMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "quit");
         // Insert placeholders and colors into the message
         quitMessage = plugin.getUtils().setPlaceholders(quitMessage, event);
+        // Translate MiniMessage and legacy color codes to a string
+        quitMessage = plugin.getUtils().translateColors(quitMessage);
 
         // Set the custom message as the system message
         event.setQuitMessage(quitMessage);

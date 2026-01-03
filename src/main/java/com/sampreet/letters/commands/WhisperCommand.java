@@ -74,11 +74,15 @@ public class WhisperCommand implements CommandExecutor, TabCompleter {
         String senderMessage = plugin.getUtils().resolveRandomMessage((Player) sender, "whisper.sender");
         // Insert placeholders and colors into the message
         senderMessage = plugin.getUtils().setPlaceholders(senderMessage, sender, recipient, whisperMessage, Target.SENDER);
+        // Translate MiniMessage and legacy color codes to a string
+        senderMessage = plugin.getUtils().translateColors(senderMessage);
 
         // Retrieve a random message from config.yml
         String recipientMessage = plugin.getUtils().resolveRandomMessage(recipient, "whisper.recipient");
         // Insert placeholders and colors into the message
         recipientMessage = plugin.getUtils().setPlaceholders(recipientMessage, sender, recipient, whisperMessage, Target.RECIPIENT);
+        // Translate MiniMessage and legacy color codes to a string
+        recipientMessage = plugin.getUtils().translateColors(recipientMessage);
 
         // Send formatted whisper messages
         sender.sendMessage(senderMessage);

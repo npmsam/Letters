@@ -24,6 +24,8 @@ public class PlayerDeathListener implements Listener {
         String deathMessage = plugin.getUtils().resolveRandomMessage(event.getEntity(), "death");
         // Insert placeholders and colors into the message
         deathMessage = plugin.getUtils().setPlaceholders(deathMessage, event);
+        // Translate MiniMessage and legacy color codes to a string
+        deathMessage = plugin.getUtils().translateColors(deathMessage);
 
         // Set the custom message as the system message
         event.setDeathMessage(deathMessage);

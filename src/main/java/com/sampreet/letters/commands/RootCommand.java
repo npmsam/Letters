@@ -74,6 +74,8 @@ public class RootCommand implements CommandExecutor, TabCompleter {
 
         // Insert placeholders and colors into message
         message = plugin.getUtils().setPlaceholders(message);
+        // Translate MiniMessage and legacy color codes to a string
+        message = plugin.getUtils().translateColors(message);
 
         sender.sendMessage(message);
     }

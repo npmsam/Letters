@@ -34,6 +34,8 @@ public class PlayerAdvancementDoneListener implements Listener {
         String advancementMessage = plugin.getUtils().resolveRandomMessage(event.getPlayer(), "advancement");
         // Insert placeholders and colors into the message
         advancementMessage = plugin.getUtils().setPlaceholders(advancementMessage, event);
+        // Translate MiniMessage and legacy color codes to a string
+        advancementMessage = plugin.getUtils().translateColors(advancementMessage);
 
         // Broadcast the custom message to the server
         event.getPlayer().getServer().broadcastMessage(advancementMessage);

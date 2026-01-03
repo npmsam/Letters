@@ -3,6 +3,8 @@ package com.sampreet.letters.lib;
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.commands.WhisperCommand;
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -56,7 +58,8 @@ public class Utils {
 
         // Return a randomly selected message from the list of valid messages
         return validMessages.get(
-                ThreadLocalRandom.current().nextInt(validMessages.size()));
+                ThreadLocalRandom.current().nextInt(validMessages.size())
+        );
     }
 
     // Function without an event being required
@@ -65,24 +68,40 @@ public class Utils {
     }
 
     // Helper function to insert placeholders and colors into messages for commands
-    public String setPlaceholders(String message, CommandSender sender, Player recipient, String whisperMessage, WhisperCommand.Target target) {
+    public String setPlaceholders(
+            String message,
+            CommandSender sender,
+            Player recipient,
+            String whisperMessage,
+            WhisperCommand.Target target
+    ) {
         // Insert command sender name
         if (sender instanceof Player player) {
-            message = message
-                    .replace(Placeholders.SENDER_NAME.key(), player.getDisplayName());
+            message = message.replace(
+                    Placeholders.SENDER_NAME.key(),
+                    player.getDisplayName()
+            );
         } else {
-            message = message
-                    .replace(Placeholders.SENDER_NAME.key(), sender.getName());
+            message = message.replace(
+                    Placeholders.SENDER_NAME.key(),
+                    sender.getName()
+            );
         }
 
         // Insert recipient player name
         if (recipient != null) {
-            message = message.replace(Placeholders.RECIPIENT_NAME.key(), recipient.getDisplayName());
+            message = message.replace(
+                    Placeholders.RECIPIENT_NAME.key(),
+                    recipient.getDisplayName()
+            );
         }
 
         // Insert whisper message
         if (whisperMessage != null) {
-            message = message.replace(Placeholders.WHISPER_MESSAGE.key(), whisperMessage);
+            message = message.replace(
+                    Placeholders.WHISPER_MESSAGE.key(),
+                    whisperMessage
+            );
         }
 
         // Decide PlaceholderAPI context based on target
@@ -96,59 +115,105 @@ public class Utils {
             message = PlaceholderAPI.setPlaceholders(PAPIContext, message);
         }
 
-        // Return the message with the placeholders and colors set
+        // Return the message with the placeholders set
         return setPlaceholders(message, null);
     }
 
-    // Helper function to insert placeholders and colors into messages
+    // Helper function to insert placeholders into messages
     public String setPlaceholders(String message, Event event) {
         // Insert current plugin version into placeholder
-        message = message.replace(Placeholders.PLUGIN_VERSION.key(), plugin.getDescription().getVersion());
+        message = message.replace(
+                Placeholders.PLUGIN_VERSION.key(),
+                plugin.getDescription().getVersion()
+        );
 
         // Inserting event-specific placeholders
         if (event != null) {
+
             // Replace placeholders for when player joins server
             switch (event) {
+
                 case PlayerJoinEvent joinEvent -> {
-                    message = message.replace(Placeholders.PLAYER_NAME.key(), joinEvent.getPlayer().getDisplayName());
+                    message = message.replace(
+                            Placeholders.PLAYER_NAME.key(),
+                            joinEvent.getPlayer().getDisplayName()
+                    );
+
                     // Apply PlaceholderAPI placeholders if installed
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-                        message = PlaceholderAPI.setPlaceholders(joinEvent.getPlayer(), message);
+                        message = PlaceholderAPI.setPlaceholders(
+                                joinEvent.getPlayer(),
+                                message
+                        );
                     }
                 }
 
                 // Replace placeholders for when player quits server
                 case PlayerQuitEvent quitEvent -> {
-                    message = message.replace(Placeholders.PLAYER_NAME.key(), quitEvent.getPlayer().getDisplayName());
+                    message = message.replace(
+                            Placeholders.PLAYER_NAME.key(),
+                            quitEvent.getPlayer().getDisplayName()
+                    );
+
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-                        message = PlaceholderAPI.setPlaceholders(quitEvent.getPlayer(), message);
+                        message = PlaceholderAPI.setPlaceholders(
+                                quitEvent.getPlayer(),
+                                message
+                        );
                     }
                 }
 
                 // Replace placeholders for when player dies
                 case PlayerDeathEvent deathEvent -> {
                     message = message
-                            .replace(Placeholders.PLAYER_NAME.key(), deathEvent.getEntity().getDisplayName())
+                            .replace(
+                                    Placeholders.PLAYER_NAME.key(),
+                                    deathEvent.getEntity().getDisplayName()
+                            )
                             .replace(
                                     Placeholders.DEATH_MESSAGE.key(),
                                     Objects.requireNonNullElse(
                                             deathEvent.getDeathMessage(),
-                                            Placeholders.DEATH_MESSAGE.key()));
+                                            Placeholders.DEATH_MESSAGE.key()
+                                    )
+                            );
+
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-                        message = PlaceholderAPI.setPlaceholders(deathEvent.getEntity(), message);
+                        message = PlaceholderAPI.setPlaceholders(
+                                deathEvent.getEntity(),
+                                message
+                        );
                     }
                 }
 
                 // Replace placeholders for when player makes an advancement
                 case PlayerAdvancementDoneEvent advancementEvent -> {
                     message = message
-                            .replace(Placeholders.PLAYER_NAME.key(), advancementEvent.getPlayer().getDisplayName())
-                            .replace(Placeholders.ADVANCEMENT_NAME.key(),
-                                    Objects.requireNonNull(advancementEvent.getAdvancement().getDisplay()).getTitle())
-                            .replace(Placeholders.ADVANCEMENT_COLOR.key(), "&"
-                                    + advancementEvent.getAdvancement().getDisplay().getType().getColor().getChar());
+                            .replace(
+                                    Placeholders.PLAYER_NAME.key(),
+                                    advancementEvent.getPlayer().getDisplayName()
+                            )
+                            .replace(
+                                    Placeholders.ADVANCEMENT_NAME.key(),
+                                    Objects.requireNonNull(
+                                            advancementEvent.getAdvancement().getDisplay()
+                                    ).getTitle()
+                            )
+                            .replace(
+                                    Placeholders.ADVANCEMENT_COLOR.key(),
+                                    "&" + advancementEvent
+                                            .getAdvancement()
+                                            .getDisplay()
+                                            .getType()
+                                            .getColor()
+                                            .getChar()
+                            );
+
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-                        message = PlaceholderAPI.setPlaceholders(advancementEvent.getPlayer(), message);
+                        message = PlaceholderAPI.setPlaceholders(
+                                advancementEvent.getPlayer(),
+                                message
+                        );
                     }
                 }
 
@@ -157,8 +222,12 @@ public class Utils {
                     message = message
                             .replace(Placeholders.PLAYER_NAME.key(), "%1$s")
                             .replace(Placeholders.CHAT_MESSAGE.key(), "%2$s");
+
                     if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-                        message = PlaceholderAPI.setPlaceholders(asyncPlayerChatEvent.getPlayer(), message);
+                        message = PlaceholderAPI.setPlaceholders(
+                                asyncPlayerChatEvent.getPlayer(),
+                                message
+                        );
                     }
                 }
 
@@ -167,32 +236,53 @@ public class Utils {
             }
         }
 
-        // Translate color codes
-        message = ChatColor.translateAlternateColorCodes('&', message);
-
-        // Return the message with the placeholders and colors set
+        // Return the message with the placeholders set
         return message;
     }
 
     // Helper function retrieve an appropriate message based on player's name and primary group
     public String resolveRandomMessage(Player player, String key) {
+
         // Try getting the player-specific message from config.yml
-        String message = plugin.getUtils().getRandomMessage("messages.players." + player.getName() + "." + key);
+        String message = plugin.getUtils().getRandomMessage(
+                "messages.players." + player.getName() + "." + key
+        );
 
         // If no player-specific message was found, then check for primary group
         if (message == null && plugin.getLuckPermsHook() != null) {
+
             // Use the LuckPermsHook to check for player's primary group
-            String primaryGroup = plugin.getLuckPermsHook().playerPrimaryGroup(player);
-            message = plugin.getUtils().getRandomMessage("messages.groups." + primaryGroup + "." + key);
+            String primaryGroup = plugin.getLuckPermsHook()
+                    .playerPrimaryGroup(player);
+
+            message = plugin.getUtils().getRandomMessage(
+                    "messages.groups." + primaryGroup + "." + key
+            );
         }
 
         // If none found, fall back to default message
         if (message == null) {
+
             // Retrieve a random message from config.yml
-            message = plugin.getUtils().getRandomMessage("messages.default." + key);
+            message = plugin.getUtils().getRandomMessage(
+                    "messages.default." + key
+            );
         }
 
         // Return the retrieved message
+        return message;
+    }
+
+    // Helper function to translate MiniMessage and legacy color codes to a string
+    public String translateColors(String message) {
+
+        // Parse MiniMessage format to colors
+        message = LegacyComponentSerializer.legacySection().serialize(MiniMessage.miniMessage().deserialize(message));
+
+        // Translate legacy color codes
+        message = ChatColor.translateAlternateColorCodes('&', message);
+
+        // Return the translated message
         return message;
     }
 }

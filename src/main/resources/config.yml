@@ -12,28 +12,28 @@ messages:
 
     # Random message from this list will be sent when a player joins the server.
     join:
-      - "&a%player_name% joined the server"
-      - "&a%player_name% is now online"
+      - "<green>%player_name% joined the server</green>"
+      - "<green>%player_name% is now online</green>"
 
     # Random message from this list will be sent when a player quits the server.
     quit:
-      - "&c%player_name% left the server"
-      - "&c%player_name% went offline"
+      - "<red>%player_name% left the server</red>"
+      - "<red>%player_name% went offline</red>"
 
     # Random message from this list will be sent when a player dies.
     death:
-      - "&c%player_name% met their end"
-      - "&c%death_message%"
+      - "<red>%player_name% met their end</red>"
+      - "<red>%death_message%</red>"
 
     # Random message from this list will be sent when a player earns an advancement.
     advancement:
-      - "%player_name% made the advancement %advancement_color%%advancement_name%"
-      - "%advancement_color%%advancement_name% &fadvancement made by %player_name%!"
+      - "%player_name% made the advancement <color>%advancement_color%%advancement_name%</color>"
+      - "<color>%advancement_color%%advancement_name%</color> <white>advancement made by %player_name%!</white>"
 
     # Random message from this list will be used when a player sends a message in chat.
     # Adding too many formats here is not recommended, as it may feel inconsistent.
     chat:
-      - "%player_name% &7>> &f%chat_message%"
+      - "%player_name% <gray>>><white> %chat_message%"
 
     # These messages are used for private player-to-player messages (whispers),
     # such as /msg, /tell, or /w.
@@ -42,12 +42,12 @@ messages:
       # Random message from this list will be shown to the sender.
       # Adding too many formats here is not recommended, as it may feel inconsistent.
       sender:
-        - "Whisper to %recipient_name% &7>> &f%whisper_message%"
+        - "Whisper to %recipient_name% <gray>>><white> %whisper_message%"
 
       # Random message from this list will be sent to the recipient.
       # Adding too many formats here is not recommended, as it may feel inconsistent.
       recipient:
-        - "Whisper from %sender_name% &7>> &f%whisper_message%"
+        - "Whisper from %sender_name% <gray>>><white> %whisper_message%"
 
   # These messages only apply to players in specific groups.
   # Group-based messages have the second-highest priority.
@@ -64,8 +64,8 @@ messages:
 
       # A random message from this list will be sent when a player in the admin group joins the server.
       join:
-        - "&cAdmin %player_name% has joined the server"
-        - "&cAdmin %player_name% is now online"
+        - "<red>Admin %player_name% has joined the server</red>"
+        - "<red>Admin %player_name% is now online</red>"
 
   # These messages apply only to specific players.
   # Player-specific messages have the highest priority.
@@ -82,8 +82,8 @@ messages:
 
       # A random message from this list will be sent when the player with the username 'Notch' joins the server.
       join:
-        - "&dNotch has joined the server"
-        - "&dNotch is now online"
+        - "<light_purple>Notch has joined the server</light_purple>"
+        - "<light_purple>Notch is now online</light_purple>"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
@@ -115,22 +115,22 @@ messages:
     commands:
 
       # Message sent when the plugin is reloaded.
-      reload: "&aReloaded Letters v%plugin_version%"
+      reload: "<green>Reloaded Letters v%plugin_version%</green>"
 
       # Message sent when no subcommand is used.
-      no-command: "&cYou must specify a subcommand."
+      no-command: "<red>You must specify a subcommand.</red>"
 
       # Message sent when an invalid subcommand is used.
-      invalid-command: "&cUnknown command."
+      invalid-command: "<red>Unknown command.</red>"
 
       # Message sent when the player lacks permission.
-      no-permission: "&cYou do not have permission to do that."
+      no-permission: "<red>You do not have permission to do that.</red>"
 
       # Message sent when no player is specified.
-      no-player: "&cYou must specify a player."
+      no-player: "<red>You must specify a player.</red>"
 
       # Message sent when an invalid player is specified.
-      invalid-player: "&cUnknown player."
+      invalid-player: "<red>Unknown player.</red>"
 
       # Message sent when no message is provided.
-      no-message: "&cYou must provide a message."
+      no-message: "<red>You must provide a message.</red>"
