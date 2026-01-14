@@ -1,0 +1,56 @@
+package com.sampreet.letters.commands;
+
+import com.sampreet.letters.Letters;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
+
+public class LettersCommand implements CommandExecutor {
+    // Store plugin instance for accessing config
+    private final Letters plugin;
+
+    public LettersCommand(Letters plugin) {
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString, String[] args) {
+        // Check if no subcommand was written.
+        if (args.length == 0) {
+            sendConfigMessage(sender, "messages.system.commands.no-command");
+            return true;
+        }
+
+        // Check if the reload command was run
+        if (args[0].equalsIgnoreCase("reload")) {
+            // Check if the sender has the required permission
+            if (!sender.hasPermission("letters.reload")) {
+                sendConfigMessage(sender, "messages.system.commands.no-permission");
+                return true;
+            }
+
+            // Reload the config and send a confirmation message
+            plugin.reloadConfig();
+            sendConfigMessage(sender, "messages.system.commands.reload");
+            return true;
+        }
+
+        // If the subcommand was not found
+        sendConfigMessage(sender, "messages.system.commands.invalid-command");
+        return true;
+    }
+
+    // Helper function to send a message to the command sender from the config
+    private void sendConfigMessage(CommandSender sender, String path) {
+        // Retrieve message from config and return if message is null
+        String message = plugin.getConfig().getString(path);
+        if (message == null || message.trim().isEmpty()) return;
+
+        // Insert current plugin version into placeholder
+        message = message.replace("%plugin_version%", plugin.getDescription().getVersion());
+
+        // Send the message to the command sender
+        sender.sendMessage(message);
+    }
+}

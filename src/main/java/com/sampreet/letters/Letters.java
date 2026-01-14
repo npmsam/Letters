@@ -1,5 +1,7 @@
 package com.sampreet.letters;
 
+import com.sampreet.letters.commands.LettersCommand;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Letters extends JavaPlugin {
@@ -25,6 +27,10 @@ public final class Letters extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+
+        // Register the root command
+        PluginCommand lettersPluginCommand = getCommand("letters");
+        if (lettersPluginCommand != null) lettersPluginCommand.setExecutor(new LettersCommand(this));
 
         // Retrieve message from config and return if message is null
         String enableMessage = getConfig().getString("messages.system.lifecycle.enable");

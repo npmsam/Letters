@@ -25,3 +25,18 @@ messages:
 
       # Message sent to the console when the plugin is disabled.
       plugin-disabled: "Plugin is disabled in config."
+
+    # Command-related system messages.
+    commands:
+
+      # Message sent when the plugin is reloaded.
+      reload: "Reloaded Letters v%plugin_version%"
+
+      # Message sent when no subcommand is used.
+      no-command: "You must specify a subcommand."
+
+      # Message sent when the player lacks permission.
+      no-permission: "You do not have permission to do that."
+
+      # Message sent when an invalid subcommand is used.
+      invalid-command: "Unknown command."
