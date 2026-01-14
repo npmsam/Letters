@@ -4,9 +4,13 @@ import com.sampreet.letters.Letters;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 
-public class LettersCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LettersCommand implements CommandExecutor, TabCompleter {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
@@ -39,6 +43,23 @@ public class LettersCommand implements CommandExecutor {
         // If the subcommand was not found
         sendConfigMessage(sender, "messages.system.commands.invalid-command");
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
+        // Create a list to store possible completions
+        List<String> completions = new ArrayList<>();
+
+        // Only provide completions for the first argument (the subcommand)
+        if (args.length != 1) return completions;
+
+        // If the user has started typing "reload", suggest it
+        if ("reload".startsWith(args[0].toLowerCase()) && sender.hasPermission("letters.reload")) {
+            completions.add("reload");
+        }
+
+        // Return the list of suggestions
+        return completions;
     }
 
     // Helper function to send a message to the command sender from the config

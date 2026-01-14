@@ -33,7 +33,14 @@ public final class Letters extends JavaPlugin {
 
         // Register the root command
         PluginCommand lettersPluginCommand = getCommand("letters");
-        if (lettersPluginCommand != null) lettersPluginCommand.setExecutor(new LettersCommand(this));
+        if (lettersPluginCommand != null) {
+            // Set the command executor
+            LettersCommand lettersCommand = new LettersCommand(this);
+            lettersPluginCommand.setExecutor(lettersCommand);
+
+            // Set the tab completer
+            lettersPluginCommand.setTabCompleter(lettersCommand);
+        }
 
         // Register the event listeners
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
