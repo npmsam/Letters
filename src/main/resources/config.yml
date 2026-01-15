@@ -23,7 +23,7 @@ messages:
     # Random message from this list will be used when a player earns an advancement.
     # Only one message is used by default, it’s okay to add more.
     advancement:
-      - "<player>:<advancement>"
+      - "<player> has made the advancement <advancement>"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
@@ -41,6 +41,12 @@ messages:
     checks:
       # Message sent to the console when the plugin is disabled.
       plugin-disabled: "Plugin is disabled in config."
+
+      # Message sent when PlaceholderAPI is detected.
+      placeholder-api-found: "PlaceholderAPI detected, extended placeholder support active."
+
+      # Message sent when PlaceholderAPI is not detected.
+      placeholder-api-not-found: "PlaceholderAPI not found, some placeholders may not work."
 
     # Command-related system messages.
     commands:

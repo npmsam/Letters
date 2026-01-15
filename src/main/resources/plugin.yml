@@ -6,6 +6,7 @@ prefix: Letters
 authors: [ Sampreet Singh ]
 description: Paper Minecraft plugin to customize system messages (join, quit, etc.) using & codes and MiniMessage, with PlaceholderAPI support and per-player, permission-group based, or global messages.
 website: https://github.com/npmsam/Letters
+softdepend: [ "PlaceholderAPI" ]
 commands:
   # Main command for controlling the plugin
   letters:

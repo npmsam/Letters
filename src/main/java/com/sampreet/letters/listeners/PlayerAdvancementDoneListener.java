@@ -3,6 +3,7 @@ package com.sampreet.letters.listeners;
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
 import com.sampreet.letters.helpers.PlaceholdersHelper;
+import com.sampreet.letters.hooks.PlaceholderAPIHook;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,9 @@ public class PlayerAdvancementDoneListener implements Listener {
 
         // Retrieve a random message from config.yml
         String advancementMessage = MessagesHelper.getRandomMessage("messages.default.advancement", plugin);
+
+        // Insert PlaceholderAPI placeholders into the message
+        advancementMessage = PlaceholderAPIHook.usePlaceholderAPI(event.getPlayer(), advancementMessage);
 
         // Put colors into the message by translating & color codes and mini message
         Component advancementMessageComponent = MessagesHelper.translateColors(advancementMessage);

@@ -4,6 +4,7 @@ import com.sampreet.letters.commands.LettersCommand;
 import com.sampreet.letters.listeners.PlayerAdvancementDoneListener;
 import com.sampreet.letters.listeners.PlayerJoinListener;
 import com.sampreet.letters.listeners.PlayerQuitListener;
+import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +30,24 @@ public final class Letters extends JavaPlugin {
 
             getServer().getPluginManager().disablePlugin(this);
             return;
+        }
+
+        // Check if PlaceholderAPI is present
+        boolean PAPIFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+
+        // Store config message path depending on whether PlaceholderAPI is present or not
+        String PAPIMessagePath = PAPIFound
+                ? "messages.system.checks.placeholder-api-found"
+                : "messages.system.checks.placeholder-api-not-found";
+
+        // Log whether PlaceholderAPI was found or not
+        String PAPIMessage = getConfig().getString(PAPIMessagePath);
+        if (PAPIMessage != null && !PAPIMessage.trim().isEmpty()) {
+            if (PAPIFound) {
+                getLogger().info(PAPIMessage);
+            } else {
+                getLogger().warning(PAPIMessage);
+            }
         }
 
         // Register the root command
