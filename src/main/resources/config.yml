@@ -5,33 +5,32 @@ enabled: true
 # This contains all configurable messages handled by the plugin,
 # such as join, quit, death, and system messages.
 messages:
-
   # These messages are default for everyone unless overridden
   # by a group-based or player-specific message.
   default:
-
     # Random message from this list will be sent when a player joins the server.
     # Multiple messages are okay to add here.
-    # Available built-in placeholders (no PlaceholderAPI needed): %player_name%, %player_username%
     join:
       - "<green><player> joined the server"
       - "<green><player> is now online"
 
     # Random message from this list will be sent when a player quits the server.
     # Multiple messages are okay to add here.
-    # Available built-in placeholders (no PlaceholderAPI needed): %player_name%, %player_username%
     quit:
       - "<red><player> left the server"
       - "<red><player> went offline"
+
+    # Random message from this list will be used when a player earns an advancement.
+    # Only one message is used by default, it’s okay to add more.
+    advancement:
+      - "<player>:<advancement>"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
   # and are not related to gameplay events.
   system:
-
     # Plugin lifecycle messages.
     lifecycle:
-
       # Message sent to the console when the plugin is enabled.
       enable: "Enabled Letters v<plugin_version>"
 
@@ -40,13 +39,11 @@ messages:
 
     # Messages related to plugin and config checks
     checks:
-
       # Message sent to the console when the plugin is disabled.
       plugin-disabled: "Plugin is disabled in config."
 
     # Command-related system messages.
     commands:
-
       # Message sent when the plugin is reloaded.
       reload: "<green>Reloaded Letters v<plugin_version>"
 

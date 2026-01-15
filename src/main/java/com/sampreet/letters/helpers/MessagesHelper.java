@@ -16,7 +16,8 @@ public class MessagesHelper {
     // Helper function to retrieve a random message from a string list in config.yml
     public static String getRandomMessage(String path, Letters plugin) {
         // Return null if the path or plugin instance passed is null
-        if (path == null || plugin == null) return null;
+        if (path == null || plugin == null)
+            return null;
 
         // Store all messages in a list
         List<String> messages = plugin.getConfig().getStringList(path);
@@ -27,16 +28,19 @@ public class MessagesHelper {
                 .toList();
 
         // Return null if no valid messages are found
-        if (validMessages.isEmpty()) return null;
+        if (validMessages.isEmpty())
+            return null;
 
         // Return a randomly selected message from the list of valid messages
         return validMessages.get(ThreadLocalRandom.current().nextInt(validMessages.size()));
     }
 
-    // Helper function to convert a string containing & color codes and mini message to a component
+    // Helper function to convert a string containing & color codes and mini message
+    // to a component
     public static Component translateColors(String message) {
         // Return null if the message passed is null
-        if (message == null) return null;
+        if (message == null)
+            return null;
 
         // Convert mini message format to a component
         Component messageComponent = MiniMessage.miniMessage().deserialize(message);

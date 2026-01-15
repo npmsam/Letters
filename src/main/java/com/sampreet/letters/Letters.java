@@ -1,6 +1,7 @@
 package com.sampreet.letters;
 
 import com.sampreet.letters.commands.LettersCommand;
+import com.sampreet.letters.listeners.PlayerAdvancementDoneListener;
 import com.sampreet.letters.listeners.PlayerJoinListener;
 import com.sampreet.letters.listeners.PlayerQuitListener;
 import org.bukkit.command.PluginCommand;
@@ -44,10 +45,12 @@ public final class Letters extends JavaPlugin {
         // Register the event listeners
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerAdvancementDoneListener(this), this);
 
         // Retrieve message from config and return if message is null
         String enableMessage = getConfig().getString("messages.system.lifecycle.enable");
-        if (enableMessage == null || enableMessage.trim().isEmpty()) return;
+        if (enableMessage == null || enableMessage.trim().isEmpty())
+            return;
 
         // Insert current plugin version into placeholder
         enableMessage = enableMessage.replace("<plugin_version>", getDescription().getVersion());
@@ -61,7 +64,8 @@ public final class Letters extends JavaPlugin {
         // Plugin shutdown logic
         // Retrieve message from config and return if message is null
         String disableMessage = getConfig().getString("messages.system.lifecycle.disable");
-        if (disableMessage == null || disableMessage.trim().isEmpty()) return;
+        if (disableMessage == null || disableMessage.trim().isEmpty())
+            return;
 
         // Insert current plugin version into placeholder
         disableMessage = disableMessage.replace("<plugin_version>", getDescription().getVersion());

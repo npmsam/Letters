@@ -1,7 +1,7 @@
 name: Letters
-version: '0.0.1'
+version: "0.0.1"
 main: com.sampreet.letters.Letters
-api-version: '1.21'
+api-version: "1.21"
 prefix: Letters
 authors: [ Sampreet Singh ]
 description: Paper Minecraft plugin to customize system messages (join, quit, etc.) using & codes and MiniMessage, with PlaceholderAPI support and per-player, permission-group based, or global messages.

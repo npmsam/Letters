@@ -22,7 +22,8 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString,
+                             String @NotNull [] args) {
         // Check if no subcommand was written.
         if (args.length == 0) {
             sendConfigMessage(sender, "messages.system.commands.no-command");
@@ -49,12 +50,14 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
+                                      String @NotNull [] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 
         // Only provide completions for the first argument (the subcommand)
-        if (args.length != 1) return completions;
+        if (args.length != 1)
+            return completions;
 
         // If the user has started typing "reload", suggest it
         if ("reload".startsWith(args[0].toLowerCase()) && sender.hasPermission("letters.reload")) {
@@ -69,7 +72,8 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
     private void sendConfigMessage(CommandSender sender, String path) {
         // Retrieve message from config and return if message is null
         String message = plugin.getConfig().getString(path);
-        if (message == null || message.trim().isEmpty()) return;
+        if (message == null || message.trim().isEmpty())
+            return;
 
         // Put colors into the message by translating & color codes and mini message
         Component messageComponent = MessagesHelper.translateColors(message);
