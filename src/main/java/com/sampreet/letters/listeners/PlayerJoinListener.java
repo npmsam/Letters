@@ -21,11 +21,11 @@ public class PlayerJoinListener implements Listener {
         // Retrieve a random message from config.yml
         String joinMessage = MessagesHelper.getRandomMessage("messages.default.join", plugin);
 
-        // Insert placeholders into the message
-        joinMessage = PlaceholdersHelper.setPlaceholders(joinMessage, event, plugin);
-
         // Put colors into the message by translating & color codes and mini message
         Component joinMessageComponent = MessagesHelper.translateColors(joinMessage);
+
+        // Insert placeholders into the message
+        joinMessageComponent = PlaceholdersHelper.setPlaceholders(joinMessageComponent, event, plugin);
 
         // Set the custom message as the system message
         event.joinMessage(joinMessageComponent);

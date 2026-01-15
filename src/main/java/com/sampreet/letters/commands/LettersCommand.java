@@ -71,11 +71,11 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
         String message = plugin.getConfig().getString(path);
         if (message == null || message.trim().isEmpty()) return;
 
-        // Insert placeholders into the message
-        message = PlaceholdersHelper.setPlaceholders(message, plugin);
-
         // Put colors into the message by translating & color codes and mini message
         Component messageComponent = MessagesHelper.translateColors(message);
+
+        // Insert placeholders into the message
+        messageComponent = PlaceholdersHelper.setPlaceholders(messageComponent, plugin);
 
         // Send the message to the command sender
         sender.sendMessage(messageComponent);

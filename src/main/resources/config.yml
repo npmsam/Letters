@@ -14,15 +14,15 @@ messages:
     # Multiple messages are okay to add here.
     # Available built-in placeholders (no PlaceholderAPI needed): %player_name%, %player_username%
     join:
-      - "<green>%player_display_name% joined the server"
-      - "<green>%player_display_name% is now online"
+      - "<green><player> joined the server"
+      - "<green><player> is now online"
 
     # Random message from this list will be sent when a player quits the server.
     # Multiple messages are okay to add here.
     # Available built-in placeholders (no PlaceholderAPI needed): %player_name%, %player_username%
     quit:
-      - "<red>%player_display_name% left the server"
-      - "<red>%player_display_name% went offline"
+      - "<red><player> left the server"
+      - "<red><player> went offline"
 
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
@@ -33,10 +33,10 @@ messages:
     lifecycle:
 
       # Message sent to the console when the plugin is enabled.
-      enable: "Enabled Letters v%plugin_version%"
+      enable: "Enabled Letters v<plugin_version>"
 
       # Message sent to the console when the plugin is disabling.
-      disable: "Disabled Letters v%plugin_version%"
+      disable: "Disabled Letters v<plugin_version>"
 
     # Messages related to plugin and config checks
     checks:
@@ -48,7 +48,7 @@ messages:
     commands:
 
       # Message sent when the plugin is reloaded.
-      reload: "<green>Reloaded Letters v%plugin_version%"
+      reload: "<green>Reloaded Letters v<plugin_version>"
 
       # Message sent when no subcommand is used.
       no-command: "<red>You must specify a subcommand."

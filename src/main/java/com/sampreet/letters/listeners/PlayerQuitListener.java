@@ -21,11 +21,11 @@ public class PlayerQuitListener implements Listener {
         // Retrieve a random message from config.yml
         String quitMessage = MessagesHelper.getRandomMessage("messages.default.quit", plugin);
 
-        // Insert placeholders into the message
-        quitMessage = PlaceholdersHelper.setPlaceholders(quitMessage, event, plugin);
-
         // Put colors into the message by translating & color codes and mini message
         Component quitMessageComponent = MessagesHelper.translateColors(quitMessage);
+
+        // Insert placeholders into the message
+        quitMessageComponent = PlaceholdersHelper.setPlaceholders(quitMessageComponent, event, plugin);
 
         // Set the custom message as the system message
         event.quitMessage(quitMessageComponent);
