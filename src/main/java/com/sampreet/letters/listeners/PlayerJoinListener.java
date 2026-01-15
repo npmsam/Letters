@@ -3,6 +3,7 @@ package com.sampreet.letters.listeners;
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
 import com.sampreet.letters.helpers.PlaceholdersHelper;
+import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -23,7 +24,10 @@ public class PlayerJoinListener implements Listener {
         // Insert placeholders into the message
         joinMessage = PlaceholdersHelper.setPlaceholders(joinMessage, event, plugin);
 
+        // Put colors into the message by translating & color codes and mini message
+        Component joinMessageComponent = MessagesHelper.translateColors(joinMessage);
+
         // Set the custom message as the system message
-        event.setJoinMessage(joinMessage);
+        event.joinMessage(joinMessageComponent);
     }
 }

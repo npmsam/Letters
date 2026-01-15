@@ -1,6 +1,9 @@
 package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -28,5 +31,20 @@ public class MessagesHelper {
 
         // Return a randomly selected message from the list of valid messages
         return validMessages.get(ThreadLocalRandom.current().nextInt(validMessages.size()));
+    }
+
+    // Helper function to convert a string containing & color codes and mini message to a component
+    public static Component translateColors(String message) {
+        // Return null if the message passed is null
+        if (message == null) return null;
+
+        // Convert mini message format to a component
+        Component messageComponent = MiniMessage.miniMessage().deserialize(message);
+
+        // Apply legacy formating and colors on the component
+        String legacySerialized = LegacyComponentSerializer.legacyAmpersand().serialize(messageComponent);
+
+        // Convert the legacy serialized string back to a string
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(legacySerialized);
     }
 }

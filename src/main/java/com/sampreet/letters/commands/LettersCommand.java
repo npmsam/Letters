@@ -1,6 +1,9 @@
 package com.sampreet.letters.commands;
 
 import com.sampreet.letters.Letters;
+import com.sampreet.letters.helpers.MessagesHelper;
+import com.sampreet.letters.helpers.PlaceholdersHelper;
+import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,10 +71,13 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
         String message = plugin.getConfig().getString(path);
         if (message == null || message.trim().isEmpty()) return;
 
-        // Insert current plugin version into placeholder
-        message = message.replace("%plugin_version%", plugin.getDescription().getVersion());
+        // Insert placeholders into the message
+        message = PlaceholdersHelper.setPlaceholders(message, plugin);
+
+        // Put colors into the message by translating & color codes and mini message
+        Component messageComponent = MessagesHelper.translateColors(message);
 
         // Send the message to the command sender
-        sender.sendMessage(message);
+        sender.sendMessage(messageComponent);
     }
 }
