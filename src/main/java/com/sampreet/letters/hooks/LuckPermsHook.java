@@ -39,7 +39,8 @@ public class LuckPermsHook {
     // Helper function to get the primary group of a player
     public static String getPrimaryGroup(Player player) {
         // Return null if luckperms isn't installed
-        if (Bukkit.getPluginManager().getPlugin("LuckPerms") == null) return null;
+        if (Bukkit.getPluginManager().getPlugin("LuckPerms") == null)
+            return null;
 
         // Get player data stored in luckperms
         User user = LuckPermsProvider.get().getUserManager().getUser(player.getUniqueId());

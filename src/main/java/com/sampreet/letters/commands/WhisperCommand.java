@@ -22,7 +22,7 @@ public class WhisperCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString,
-                             String @NotNull [] args) {
+            String @NotNull [] args) {
         // Check if no player name was provided.
         if (args.length == 0) {
             // Redirect to vanilla /msg
@@ -65,7 +65,8 @@ public class WhisperCommand implements CommandExecutor {
         // Put colors into the message by translating & color codes and mini message
         Component senderMessageComponent = MessagesHelper.translateColors(senderMessage);
         // Insert placeholders into the message
-        senderMessageComponent = PlaceholdersHelper.setPlaceholders(senderMessageComponent, sender, recipient, whisperMessage, plugin);
+        senderMessageComponent = PlaceholdersHelper.setPlaceholders(senderMessageComponent, sender, recipient,
+                whisperMessage, plugin);
 
         // Retrieve a random message from config.yml
         String recipientMessage = MessagesHelper.getRandomMessage("messages.default.whisper.recipient", plugin);
@@ -74,7 +75,8 @@ public class WhisperCommand implements CommandExecutor {
         // Put colors into the message by translating & color codes and mini message
         Component recipientMessageComponent = MessagesHelper.translateColors(recipientMessage);
         // Insert placeholders into the message
-        recipientMessageComponent = PlaceholdersHelper.setPlaceholders(recipientMessageComponent, sender, recipient, whisperMessage, plugin);
+        recipientMessageComponent = PlaceholdersHelper.setPlaceholders(recipientMessageComponent, sender, recipient,
+                whisperMessage, plugin);
 
         // Send formatted whisper messages
         if (senderMessage != null)

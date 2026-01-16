@@ -21,7 +21,8 @@ public class PlayerHideListener implements Listener {
     @EventHandler
     public void onPlayerHide(PlayerHideEvent event) {
         // Return if the event is silent
-        if (event.isSilent()) return;
+        if (event.isSilent())
+            return;
 
         // Retrieve a random message from config.yml
         String hideMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "quit", plugin);

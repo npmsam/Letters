@@ -10,7 +10,8 @@ public class SuperVanishHook {
     private SuperVanishHook() {
     }
 
-    // Function to check if SuperVanish or PremiumVanish is installed and print a message
+    // Function to check if SuperVanish or PremiumVanish is installed and print a
+    // message
     public static void checkVanishPlugin(Letters plugin) {
         // Check if a supported vanish plugin is present
         boolean superVanishFound = Bukkit.getPluginManager().getPlugin("SuperVanish") != null;
@@ -44,7 +45,9 @@ public class SuperVanishHook {
             return;
 
         // Log vanish plugin status
-        if (pluginName != null) plugin.getLogger().info(message.replace("<vanish_plugin>", pluginName));
-        else plugin.getLogger().warning(message);
+        if (pluginName != null)
+            plugin.getLogger().info(message.replace("<vanish_plugin>", pluginName));
+        else
+            plugin.getLogger().warning(message);
     }
 }

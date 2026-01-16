@@ -21,7 +21,8 @@ public class PlayerShowListener implements Listener {
     @EventHandler
     public void onPlayerShow(PlayerShowEvent event) {
         // Return if the event is silent
-        if (event.isSilent()) return;
+        if (event.isSilent())
+            return;
 
         // Retrieve a random message from config.yml
         String showMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);

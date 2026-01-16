@@ -25,7 +25,7 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString,
-                             String @NotNull [] args) {
+            String @NotNull [] args) {
         // Check if no subcommand was written.
         if (args.length == 0) {
             sendConfigMessage(sender, "messages.system.commands.no-command");
@@ -53,7 +53,7 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
-                                      String @NotNull [] args) {
+            String @NotNull [] args) {
         // Create a list to store possible completions
         List<String> completions = new ArrayList<>();
 
@@ -78,7 +78,8 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
             return;
 
         // Insert PlaceholderAPI placeholders into the message
-        if (sender instanceof Player player) message = PlaceholderApiHook.usePlaceholderAPI(player, message);
+        if (sender instanceof Player player)
+            message = PlaceholderApiHook.usePlaceholderAPI(player, message);
 
         // Put colors into the message by translating & color codes and mini message
         Component messageComponent = MessagesHelper.translateColors(message);

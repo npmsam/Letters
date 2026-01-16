@@ -37,7 +37,8 @@ public class MessagesHelper {
         return validMessages.get(ThreadLocalRandom.current().nextInt(validMessages.size()));
     }
 
-    // Helper function retrieve an appropriate message based on player name and primary group
+    // Helper function retrieve an appropriate message based on player name and
+    // primary group
     public static String resolveRandomMessage(Player player, String key, Letters plugin) {
         // Try getting the player-specific message from config.yml
         String message = getRandomMessage("messages.players." + player.getName() + "." + key, plugin);
@@ -47,11 +48,13 @@ public class MessagesHelper {
             // The function returns the primary group name in lowercase or null
             String primaryGroup = LuckPermsHook.getPrimaryGroup(player);
 
-            if (primaryGroup != null) message = getRandomMessage("messages.groups." + primaryGroup + "." + key, plugin);
+            if (primaryGroup != null)
+                message = getRandomMessage("messages.groups." + primaryGroup + "." + key, plugin);
         }
 
         // If none found, fall back to default message
-        if (message == null) message = getRandomMessage("messages.default." + key, plugin);
+        if (message == null)
+            message = getRandomMessage("messages.default." + key, plugin);
 
         // Return the retrieved message
         return message;
