@@ -2,13 +2,14 @@ package com.sampreet.letters.listeners;
 
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
-import com.sampreet.letters.helpers.PlaceholdersHelper;
+import com.sampreet.letters.helpers.VanishPlaceholdersHelper;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import de.myzelyam.api.vanish.PlayerHideEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerHideListener implements Listener {
     // Store plugin instance for accessing config
@@ -19,7 +20,7 @@ public class PlayerHideListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerHide(PlayerHideEvent event) {
+    public void onPlayerHide(@NotNull PlayerHideEvent event) {
         // Return if the event is silent
         if (event.isSilent())
             return;
@@ -34,7 +35,7 @@ public class PlayerHideListener implements Listener {
         Component hideMessageComponent = MessagesHelper.translateColors(hideMessage);
 
         // Insert placeholders into the message
-        hideMessageComponent = PlaceholdersHelper.setPlaceholders(hideMessageComponent, event, plugin);
+        hideMessageComponent = VanishPlaceholdersHelper.setPlaceholders(hideMessageComponent, event, plugin);
 
         // Prevent the vanish plugin from sending a join message
         event.setSilent(true);

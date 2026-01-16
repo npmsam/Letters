@@ -8,6 +8,7 @@ import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
 
 public class AsyncChatListener implements Listener {
     // Store plugin instance for accessing config
@@ -18,7 +19,7 @@ public class AsyncChatListener implements Listener {
     }
 
     @EventHandler
-    public void onAsyncChat(AsyncChatEvent event) {
+    public void onAsyncChat(@NotNull AsyncChatEvent event) {
         // Retrieve a random message from config.yml
         String chatMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "chat", plugin);
 

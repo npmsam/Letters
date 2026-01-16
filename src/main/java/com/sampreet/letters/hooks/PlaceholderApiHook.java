@@ -4,6 +4,7 @@ import com.sampreet.letters.Letters;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class PlaceholderApiHook {
     // Prevent instantiation of the class
@@ -21,7 +22,7 @@ public class PlaceholderApiHook {
     }
 
     // Function to check if PlaceholderAPI is installed and print a message
-    public static void checkPlaceholderAPI(Letters plugin) {
+    public static void checkPlaceholderAPI(@NotNull Letters plugin) {
         // Check if PlaceholderAPI is present
         boolean PlaceholderApiFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 

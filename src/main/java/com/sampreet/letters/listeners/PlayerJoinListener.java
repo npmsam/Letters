@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerJoinListener implements Listener {
     // Store plugin instance for accessing config
@@ -18,7 +19,7 @@ public class PlayerJoinListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
         // Retrieve a random message from config.yml
         String joinMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
 

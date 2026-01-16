@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerDeathListener implements Listener {
     // Store plugin instance for accessing config
@@ -18,7 +19,7 @@ public class PlayerDeathListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
+    public void onPlayerDeath(@NotNull PlayerDeathEvent event) {
         // Retrieve a random message from config.yml
         String deathMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "death", plugin);
 

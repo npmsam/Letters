@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerQuitListener implements Listener {
     // Store plugin instance for accessing config
@@ -18,7 +19,7 @@ public class PlayerQuitListener implements Listener {
     }
 
     @EventHandler
-    public void onQuitJoin(PlayerQuitEvent event) {
+    public void onQuitJoin(@NotNull PlayerQuitEvent event) {
         // Retrieve a random message from config.yml
         String quitMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "quit", plugin);
 

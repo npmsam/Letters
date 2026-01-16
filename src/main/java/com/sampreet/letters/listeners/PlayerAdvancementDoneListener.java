@@ -8,6 +8,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerAdvancementDoneListener implements Listener {
     // Store plugin instance for accessing config
@@ -18,9 +19,9 @@ public class PlayerAdvancementDoneListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerAdvancementDone(PlayerAdvancementDoneEvent event) {
+    public void onPlayerAdvancementDone(@NotNull PlayerAdvancementDoneEvent event) {
         // Return if the advancement has no display
-        if (event.getAdvancement().getDisplay() == null)
+        if (event.getAdvancement().getDisplay() == null || event.getAdvancement().getParent() == null)
             return;
 
         // Retrieve a random message from config.yml

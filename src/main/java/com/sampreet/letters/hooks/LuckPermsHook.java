@@ -5,6 +5,7 @@ import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 
 public class LuckPermsHook {
     // Prevent instantiation of the class
@@ -37,7 +38,7 @@ public class LuckPermsHook {
     }
 
     // Helper function to get the primary group of a player
-    public static String getPrimaryGroup(Player player) {
+    public static @Nullable String getPrimaryGroup(Player player) {
         // Return null if luckperms isn't installed
         if (Bukkit.getPluginManager().getPlugin("LuckPerms") == null)
             return null;

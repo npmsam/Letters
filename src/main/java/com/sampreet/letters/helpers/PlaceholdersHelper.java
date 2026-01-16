@@ -1,8 +1,6 @@
 package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
-import de.myzelyam.api.vanish.PlayerHideEvent;
-import de.myzelyam.api.vanish.PlayerShowEvent;
 import io.papermc.paper.advancement.AdvancementDisplay;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
@@ -18,6 +16,7 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public final class PlaceholdersHelper {
     // Prevent instantiation of the class
@@ -103,7 +102,12 @@ public final class PlaceholdersHelper {
         if (event instanceof PlayerDeathEvent playerDeathEvent) {
             messageComponent = messageComponent
                     .replaceText(builder -> builder.matchLiteral("<death_message>")
-                            .replacement(playerDeathEvent.deathMessage()))
+                            .replacement(playerDeathEvent.deathMessage()));
+
+            // Replace player name in death message and placeholder
+            messageComponent = messageComponent
+                    .replaceText(builder -> builder.matchLiteral(playerDeathEvent.getPlayer().getName())
+                            .replacement(playerComponent(playerDeathEvent.getPlayer())))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(playerDeathEvent.getPlayer())));
 
@@ -125,18 +129,6 @@ public final class PlaceholdersHelper {
                             .replacement(asyncChatEvent.message()))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(asyncChatEvent.getPlayer())));
-        }
-
-        // Replace placeholders for when player turns off vanish
-        if (event instanceof PlayerShowEvent playerShowEvent) {
-            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
-                    .replacement(playerComponent(playerShowEvent.getPlayer())));
-        }
-
-        // Replace placeholders for when player turns on vanish
-        if (event instanceof PlayerHideEvent playerHideEvent) {
-            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
-                    .replacement(playerComponent(playerHideEvent.getPlayer())));
         }
 
         // Return the component with the placeholders set
@@ -164,7 +156,7 @@ public final class PlaceholdersHelper {
     }
 
     // Create a vanilla-like advancement name component
-    public static Component advancementComponent(@NotNull Advancement advancement) {
+    public static @Nullable Component advancementComponent(@NotNull Advancement advancement) {
         // Store the display in a variable
         AdvancementDisplay advancementDisplay = advancement.getDisplay();
 
@@ -188,7 +180,7 @@ public final class PlaceholdersHelper {
     }
 
     // Helper function to get the color of the advancement as an empty component
-    private static Component frameColorComponent(@NotNull AdvancementDisplay.Frame frame) {
+    private static @NotNull Component frameColorComponent(@NotNull AdvancementDisplay.Frame frame) {
         return Component.empty().color(frameColor(frame));
     }
 
