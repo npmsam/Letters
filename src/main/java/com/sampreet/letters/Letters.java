@@ -59,6 +59,9 @@ public final class Letters extends JavaPlugin {
             // Set the command executor
             WhisperCommand whisperCommand = new WhisperCommand(this);
             whisperPluginCommand.setExecutor(whisperCommand);
+
+            // Set the tab completer
+            whisperPluginCommand.setTabCompleter(whisperCommand);
         }
 
         // Register the event listeners

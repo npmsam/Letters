@@ -9,10 +9,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class WhisperCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class WhisperCommand implements CommandExecutor, TabCompleter {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
@@ -84,6 +88,24 @@ public class WhisperCommand implements CommandExecutor {
         if (recipientMessage != null)
             recipient.sendMessage(recipientMessageComponent);
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, String [] args) {
+        // Create a list to store possible completions
+        List<String> completions = new ArrayList<>();
+
+        // Only provide completions for the first argument (the recipient name)
+        if (args.length == 1) {
+            for (Player player : plugin.getServer().getOnlinePlayers()) {
+                if (player.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
+                    completions.add(player.getName());
+                }
+            }
+        }
+
+        // Return the list of suggestions
+        return completions;
     }
 
     // Helper function to redirect to the vanilla command
