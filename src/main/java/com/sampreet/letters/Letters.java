@@ -3,6 +3,7 @@ package com.sampreet.letters;
 import com.sampreet.letters.commands.LettersCommand;
 import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
+import com.sampreet.letters.hooks.SuperVanishHook;
 import com.sampreet.letters.listeners.*;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,6 +34,9 @@ public final class Letters extends JavaPlugin {
 
         // Log whether PlaceholderAPI was found or not
         PlaceholderApiHook.checkPlaceholderAPI(this);
+
+        // Log whether SuperVanish or PremiumVanish was found or not
+        SuperVanishHook.checkVanishPlugin(this);
 
         // Register the letters command
         PluginCommand lettersPluginCommand = getCommand("letters");

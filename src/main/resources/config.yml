@@ -68,6 +68,12 @@ messages:
       # Message sent when PlaceholderAPI is not detected.
       placeholder-api-not-found: "PlaceholderAPI not found, some placeholders may not work."
 
+      # Message sent when a supported vanish plugin is detected.
+      vanish-plugin-found: "<vanish_plugin> detected. Vanish support enabled."
+
+      # Message sent when a supported vanish plugin is not detected.
+      vanish-plugin-not-found: "No supported vanish plugin found. Vanish-related features will be not work."
+
     # Command-related system messages.
     commands:
       # Message sent when the plugin is reloaded.

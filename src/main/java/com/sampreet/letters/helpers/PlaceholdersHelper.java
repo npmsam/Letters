@@ -1,6 +1,8 @@
 package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
+import de.myzelyam.api.vanish.PlayerHideEvent;
+import de.myzelyam.api.vanish.PlayerShowEvent;
 import io.papermc.paper.advancement.AdvancementDisplay;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
@@ -105,6 +107,18 @@ public final class PlaceholdersHelper {
                             .replacement(asyncChatEvent.message()))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(asyncChatEvent.getPlayer())));
+        }
+
+        // Replace placeholders for when player turns off vanish
+        if (event instanceof PlayerShowEvent playerShowEvent) {
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
+                    .replacement(playerComponent(playerShowEvent.getPlayer())));
+        }
+
+        // Replace placeholders for when player turns on vanish
+        if (event instanceof PlayerHideEvent playerHideEvent) {
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
+                    .replacement(playerComponent(playerHideEvent.getPlayer())));
         }
 
         // Return the component with the placeholders set
