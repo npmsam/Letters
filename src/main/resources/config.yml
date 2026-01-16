@@ -20,6 +20,11 @@ messages:
       - "<red><player> left the server"
       - "<red><player> went offline"
 
+    # Random message from this list will be sent when a player dies.
+    # Only one message is used by default, it’s okay to add more.
+    death:
+      - "<red><death_message>"
+
     # Random message from this list will be used when a player earns an advancement.
     # Only one message is used by default, it’s okay to add more.
     advancement:

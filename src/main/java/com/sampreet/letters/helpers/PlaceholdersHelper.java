@@ -9,6 +9,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -50,6 +51,15 @@ public final class PlaceholdersHelper {
                             .replacement(advancementComponent(playerAdvancementDoneEvent.getAdvancement())))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(playerAdvancementDoneEvent.getPlayer())));
+        }
+
+        // Replace placeholders for when player dies
+        if (event instanceof PlayerDeathEvent playerDeathEvent) {
+            messageComponent = messageComponent
+                    .replaceText(builder -> builder.matchLiteral("<death_message>")
+                            .replacement(playerDeathEvent.deathMessage()))
+                    .replaceText(builder -> builder.matchLiteral("<player>")
+                            .replacement(playerComponent(playerDeathEvent.getPlayer())));
         }
 
         // Return the component with the placeholders set

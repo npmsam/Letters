@@ -7,31 +7,31 @@ import com.sampreet.letters.hooks.PlaceholderApiHook;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class PlayerQuitListener implements Listener {
+public class PlayerDeathListener implements Listener {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
-    public PlayerQuitListener(Letters plugin) {
+    public PlayerDeathListener(Letters plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onQuitJoin(PlayerQuitEvent event) {
+    public void onPlayerDeath(PlayerDeathEvent event) {
         // Retrieve a random message from config.yml
-        String quitMessage = MessagesHelper.getRandomMessage("messages.default.quit", plugin);
+        String deathMessage = MessagesHelper.getRandomMessage("messages.default.death", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
-        quitMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), quitMessage);
+        deathMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), deathMessage);
 
         // Put colors into the message by translating & color codes and mini message
-        Component quitMessageComponent = MessagesHelper.translateColors(quitMessage);
+        Component joinMessageComponent = MessagesHelper.translateColors(deathMessage);
 
         // Insert placeholders into the message
-        quitMessageComponent = PlaceholdersHelper.setPlaceholders(quitMessageComponent, event, plugin);
+        joinMessageComponent = PlaceholdersHelper.setPlaceholders(joinMessageComponent, event, plugin);
 
         // Set the custom message as the system message
-        event.quitMessage(quitMessageComponent);
+        event.deathMessage(joinMessageComponent);
     }
 }
