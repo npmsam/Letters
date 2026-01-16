@@ -24,7 +24,7 @@ public class PlayerShowListener implements Listener {
         if (event.isSilent()) return;
 
         // Retrieve a random message from config.yml
-        String showMessage = MessagesHelper.getRandomMessage("messages.default.join", plugin);
+        String showMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         showMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), showMessage);

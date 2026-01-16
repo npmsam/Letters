@@ -24,7 +24,7 @@ public class PlayerAdvancementDoneListener implements Listener {
             return;
 
         // Retrieve a random message from config.yml
-        String advancementMessage = MessagesHelper.getRandomMessage("messages.default.advancement", plugin);
+        String advancementMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "advancement", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         advancementMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), advancementMessage);

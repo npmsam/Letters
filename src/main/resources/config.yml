@@ -45,6 +45,32 @@ messages:
     whisper.recipient:
       - "<gray><sender> -> (you): <white><message>"
 
+  # These messages only apply to players in specific groups.
+  # Group-based messages have the second-highest priority.
+  # The keys under this section must be the exact group names defined in LuckPerms.
+  groups:
+    # These messages override default messages for players in the admin group in LuckPerms.
+    # Only players in the admin group will have these custom messages.
+    admin:
+      # A random message from this list will be sent when a player in the admin group joins the server.
+      # Multiple messages are okay to add here.
+      join:
+        - "<red>Admin <player> has joined the server"
+        - "<red>Admin <player> is now online"
+
+  # These messages apply only to specific players.
+  # Player-specific messages have the highest priority.
+  # The keys under this section must be the exact Minecraft username of the player.
+  players:
+    # These messages override all others for the player with the username 'Notch'.
+    # Only the player with the username 'Notch' will have these custom messages.
+    Notch:
+      # A random message from this list will be sent when the player with the username 'Notch' joins the server.
+      # Multiple messages are okay to add here.
+      join:
+        - "<light_purple>Notch has joined the server"
+        - "<light_purple>Notch is now online"
+
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
   # and are not related to gameplay events.
@@ -63,13 +89,13 @@ messages:
       plugin-disabled: "Plugin is disabled in config."
 
       # Message sent when PlaceholderAPI is detected.
-      placeholder-api-found: "PlaceholderAPI detected, extended placeholder support active."
+      placeholder-api-found: "PlaceholderAPI detected. Extended placeholder support enabled."
 
       # Message sent when PlaceholderAPI is not detected.
-      placeholder-api-not-found: "PlaceholderAPI not found, some placeholders may not work."
+      placeholder-api-not-found: "PlaceholderAPI not found. Some placeholders may not work."
 
       # Message sent when LuckPerms is detected.
-      luck-perms-found: "LuckPerms detected. Group-based messages support enabled."
+      luck-perms-found: "LuckPerms detected. Group-based message support enabled."
 
       # Message sent when LuckPerms is not detected.
       luck-perms-not-found: "LuckPerms not found. Group-based messages will not work."
@@ -78,7 +104,7 @@ messages:
       vanish-plugin-found: "<vanish_plugin> detected. Vanish support enabled."
 
       # Message sent when a supported vanish plugin is not detected.
-      vanish-plugin-not-found: "No supported vanish plugin found. Vanish-related features will be not work."
+      vanish-plugin-not-found: "No supported vanish plugin found. Vanish-related features will not work."
 
     # Command-related system messages.
     commands:

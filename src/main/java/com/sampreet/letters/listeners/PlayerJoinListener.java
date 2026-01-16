@@ -20,7 +20,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         // Retrieve a random message from config.yml
-        String joinMessage = MessagesHelper.getRandomMessage("messages.default.join", plugin);
+        String joinMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         joinMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), joinMessage);

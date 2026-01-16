@@ -20,7 +20,7 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onQuitJoin(PlayerQuitEvent event) {
         // Retrieve a random message from config.yml
-        String quitMessage = MessagesHelper.getRandomMessage("messages.default.quit", plugin);
+        String quitMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "quit", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         quitMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), quitMessage);

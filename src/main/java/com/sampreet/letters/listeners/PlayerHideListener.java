@@ -24,7 +24,7 @@ public class PlayerHideListener implements Listener {
         if (event.isSilent()) return;
 
         // Retrieve a random message from config.yml
-        String hideMessage = MessagesHelper.getRandomMessage("messages.default.quit", plugin);
+        String hideMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "quit", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         hideMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), hideMessage);

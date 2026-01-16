@@ -20,7 +20,7 @@ public class PlayerDeathListener implements Listener {
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         // Retrieve a random message from config.yml
-        String deathMessage = MessagesHelper.getRandomMessage("messages.default.death", plugin);
+        String deathMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "death", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         deathMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), deathMessage);

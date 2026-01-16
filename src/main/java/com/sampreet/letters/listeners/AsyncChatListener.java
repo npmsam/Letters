@@ -20,7 +20,7 @@ public class AsyncChatListener implements Listener {
     @EventHandler
     public void onAsyncChat(AsyncChatEvent event) {
         // Retrieve a random message from config.yml
-        String chatMessage = MessagesHelper.getRandomMessage("messages.default.chat", plugin);
+        String chatMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "chat", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         chatMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), chatMessage);
