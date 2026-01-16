@@ -68,6 +68,12 @@ messages:
       # Message sent when PlaceholderAPI is not detected.
       placeholder-api-not-found: "PlaceholderAPI not found, some placeholders may not work."
 
+      # Message sent when LuckPerms is detected.
+      luck-perms-found: "LuckPerms detected. Group-based messages support enabled."
+
+      # Message sent when LuckPerms is not detected.
+      luck-perms-not-found: "LuckPerms not found. Group-based messages will not work."
+
       # Message sent when a supported vanish plugin is detected.
       vanish-plugin-found: "<vanish_plugin> detected. Vanish support enabled."
 

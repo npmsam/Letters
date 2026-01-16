@@ -8,6 +8,7 @@ description: Paper Minecraft plugin to customize system messages (join, quit, et
 website: https://github.com/npmsam/Letters
 softdepend:
   - PlaceholderAPI
+  - LuckPerms
   - SuperVanish
   - PremiumVanish
 commands:

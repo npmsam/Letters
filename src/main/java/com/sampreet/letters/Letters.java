@@ -2,6 +2,7 @@ package com.sampreet.letters;
 
 import com.sampreet.letters.commands.LettersCommand;
 import com.sampreet.letters.commands.WhisperCommand;
+import com.sampreet.letters.hooks.LuckPermsHook;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import com.sampreet.letters.hooks.SuperVanishHook;
 import com.sampreet.letters.listeners.*;
@@ -34,6 +35,9 @@ public final class Letters extends JavaPlugin {
 
         // Log whether PlaceholderAPI was found or not
         PlaceholderApiHook.checkPlaceholderAPI(this);
+
+        // Log whether LuckPerms was found or not
+        LuckPermsHook.checkLuckPerms(this);
 
         // Log whether SuperVanish or PremiumVanish was found or not
         SuperVanishHook.checkVanishPlugin(this);
