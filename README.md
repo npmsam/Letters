@@ -1,6 +1,7 @@
 # Letters [![Latest Release](https://img.shields.io/github/v/release/npmsam/Letters?label=Latest%20Release&style=flat)](https://github.com/npmsam/Letters/releases)
 
-Customizing server messages in Minecraft should not be difficult. They are just [Letters](https://github.com/npmsam/Letters) on the screen.  
+Customizing server messages in Minecraft should not be difficult. They are
+just [Letters](https://github.com/npmsam/Letters) on the screen.  
 That is why I made Letters, to make server messages easy to change and manage.
 
 ## Features
@@ -26,14 +27,16 @@ You can set different messages for:
 - Specific players by username
 
 Messages support Minecraft color codes or PaperMC MiniMessage formatting. Each event includes built-in placeholders, and
-you can use [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to add placeholders from other plugins.
+you can use [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to add placeholders from other
+plugins.
 
 ## Placeholders
 
 Letters includes a small set of built-in placeholders for each message type. These cover the most basic needs and are
 listed in the default configuration file.
 
-For more advanced placeholders, you can install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) and any expansion packs you need.
+For more advanced placeholders, you can
+install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) and any expansion packs you need.
 
 ## Formatting
 
@@ -48,7 +51,8 @@ You can also use MiniMessage, which is cleaner and easier to read. For example, 
 ## Config Structure
 
 The `messages` section contains all server messages handled by the plugin. You can set custom messages for specific
-permission groups under `groups`, using group names from [LuckPerms](https://luckperms.net/). Messages can also be set for specific players under
+permission groups under `groups`, using group names from [LuckPerms](https://luckperms.net/). Messages can also be set
+for specific players under
 `players`, where the player username must match exactly. The message format is the same in all sections.
 
 ```yml
@@ -85,13 +89,15 @@ messages:
 
 ## Download
 
-You can download a prebuilt JAR file from the [GitHub releases](https://github.com/npmsam/Letters/releases) page if you do not want to build the plugin yourself.
+You can download a prebuilt JAR file from the [GitHub releases](https://github.com/npmsam/Letters/releases) page if you
+do not want to build the plugin yourself.
 The default configuration file lists all supported events and built-in placeholders, so reading it is an easy way to
 understand how the plugin works and get started.
 
 ## Building
 
-If you prefer to build the plugin yourself, you can use [Apache Maven](https://maven.apache.org/). Open a terminal or command prompt, go to the
+If you prefer to build the plugin yourself, you can use [Apache Maven](https://maven.apache.org/). Open a terminal or
+command prompt, go to the
 plugin directory that you cloned or extracted, and run this command:
 
 ```bash
@@ -100,6 +106,7 @@ mvn clean package
 
 ## Licensing
 
-This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). You are free to use, copy, modify, merge, publish, distribute,
+This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). You are free to use, copy,
+modify, merge, publish, distribute,
 sublicense, and sell copies of the plugin, as long as the original copyright notice and this permission notice are
 included. See the [LICENSE](https://github.com/npmsam/Letters/blob/main/LICENSE) file for more information.

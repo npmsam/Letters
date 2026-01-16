@@ -106,6 +106,16 @@ public final class PlaceholdersHelper {
                             .replacement(playerDeathEvent.deathMessage()))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(playerDeathEvent.getPlayer())));
+
+            // Check if player was killed by another player
+            if (playerDeathEvent.getPlayer().getKiller() != null) {
+                Player killer = playerDeathEvent.getPlayer().getKiller();
+
+                // Replace killer name
+                messageComponent = messageComponent
+                        .replaceText(builder -> builder.matchLiteral(killer.getName())
+                                .replacement(playerComponent(killer)));
+            }
         }
 
         // Replace placeholders for when player sends a message in server chat
