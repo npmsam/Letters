@@ -25,6 +25,11 @@ messages:
     death:
       - "<red><death_message>"
 
+    # Random message from this list will be used when a player sends a message in chat.
+    # Only one format is used by default, it’s okay to add more.
+    chat:
+      - "<player> <gray>>> <white><message>"
+
     # Random message from this list will be used when a player earns an advancement.
     # Only one message is used by default, it’s okay to add more.
     advancement:

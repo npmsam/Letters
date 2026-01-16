@@ -4,34 +4,34 @@ import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
 import com.sampreet.letters.helpers.PlaceholdersHelper;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class PlayerDeathListener implements Listener {
+public class AsyncChatListener implements Listener {
     // Store plugin instance for accessing config
     private final Letters plugin;
 
-    public PlayerDeathListener(Letters plugin) {
+    public AsyncChatListener(Letters plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
+    public void onAsyncChat(AsyncChatEvent event) {
         // Retrieve a random message from config.yml
-        String deathMessage = MessagesHelper.getRandomMessage("messages.default.death", plugin);
+        String chatMessage = MessagesHelper.getRandomMessage("messages.default.chat", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
-        deathMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), deathMessage);
+        chatMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), chatMessage);
 
         // Put colors into the message by translating & color codes and mini message
-        Component deathMessageComponent = MessagesHelper.translateColors(deathMessage);
+        Component chatMessageComponent = MessagesHelper.translateColors(chatMessage);
 
         // Insert placeholders into the message
-        deathMessageComponent = PlaceholdersHelper.setPlaceholders(deathMessageComponent, event, plugin);
+        Component finalChatMessageComponent = PlaceholdersHelper.setPlaceholders(chatMessageComponent, event, plugin);
 
         // Set the custom message as the system message
-        event.deathMessage(deathMessageComponent);
+        event.renderer((source, sourceDisplayName, message, viewer) -> finalChatMessageComponent);
     }
 }

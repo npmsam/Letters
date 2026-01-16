@@ -2,6 +2,7 @@ package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
 import io.papermc.paper.advancement.AdvancementDisplay;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
@@ -60,6 +61,15 @@ public final class PlaceholdersHelper {
                             .replacement(playerDeathEvent.deathMessage()))
                     .replaceText(builder -> builder.matchLiteral("<player>")
                             .replacement(playerComponent(playerDeathEvent.getPlayer())));
+        }
+
+        // Replace placeholders for when player sends a message in server chat
+        if (event instanceof AsyncChatEvent asyncChatEvent) {
+            messageComponent = messageComponent
+                    .replaceText(builder -> builder.matchLiteral("<message>")
+                            .replacement(asyncChatEvent.message()))
+                    .replaceText(builder -> builder.matchLiteral("<player>")
+                            .replacement(playerComponent(asyncChatEvent.getPlayer())));
         }
 
         // Return the component with the placeholders set

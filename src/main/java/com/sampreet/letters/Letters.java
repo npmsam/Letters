@@ -2,10 +2,7 @@ package com.sampreet.letters;
 
 import com.sampreet.letters.commands.LettersCommand;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
-import com.sampreet.letters.listeners.PlayerAdvancementDoneListener;
-import com.sampreet.letters.listeners.PlayerDeathListener;
-import com.sampreet.letters.listeners.PlayerJoinListener;
-import com.sampreet.letters.listeners.PlayerQuitListener;
+import com.sampreet.letters.listeners.*;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -52,6 +49,7 @@ public final class Letters extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerAdvancementDoneListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
+        getServer().getPluginManager().registerEvents(new AsyncChatListener(this), this);
 
         // Retrieve message from config and return if message is null
         String enableMessage = getConfig().getString("messages.system.lifecycle.enable");
