@@ -12,6 +12,11 @@ commands:
   letters:
     description: The main command for managing the plugin.
     usage: /<command> <subcommand>
+  # Main command for controlling the plugin
+  tell:
+    description: Command that overrides the vanilla /msg, /tell, and /w whisper commands.
+    usage: /<command> <player> <message>
+    aliases: [ "msg", "w" ]
 permissions:
   # Permission to reload the plugin configuration
   letters.reload:

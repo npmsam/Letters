@@ -35,6 +35,16 @@ messages:
     advancement:
       - "<player> has made the advancement <advancement>"
 
+    # Random message from this list will be shown to the sender.
+    # Only one message is used by default, it’s okay to add more.
+    whisper.sender:
+      - "<gray>(you) -> <recipient>: <white><message>"
+
+    # Random message from this list will be sent to the recipient.
+    # Only one message is used by default, it’s okay to add more.
+    whisper.recipient:
+      - "<gray><sender> -> (you): <white><message>"
+
   # System messages used internally by the plugin.
   # These messages are shown in the console or as command feedback,
   # and are not related to gameplay events.

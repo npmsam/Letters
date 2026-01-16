@@ -3,11 +3,13 @@ package com.sampreet.letters.commands;
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
 import com.sampreet.letters.helpers.PlaceholdersHelper;
+import com.sampreet.letters.hooks.PlaceholderApiHook;
 import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -74,6 +76,9 @@ public class LettersCommand implements CommandExecutor, TabCompleter {
         String message = plugin.getConfig().getString(path);
         if (message == null || message.trim().isEmpty())
             return;
+
+        // Insert PlaceholderAPI placeholders into the message
+        if (sender instanceof Player player) message = PlaceholderApiHook.usePlaceholderAPI(player, message);
 
         // Put colors into the message by translating & color codes and mini message
         Component messageComponent = MessagesHelper.translateColors(message);

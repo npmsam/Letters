@@ -1,6 +1,7 @@
 package com.sampreet.letters;
 
 import com.sampreet.letters.commands.LettersCommand;
+import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import com.sampreet.letters.listeners.*;
 import org.bukkit.command.PluginCommand;
@@ -33,7 +34,7 @@ public final class Letters extends JavaPlugin {
         // Log whether PlaceholderAPI was found or not
         PlaceholderApiHook.checkPlaceholderAPI(this);
 
-        // Register the root command
+        // Register the letters command
         PluginCommand lettersPluginCommand = getCommand("letters");
         if (lettersPluginCommand != null) {
             // Set the command executor
@@ -42,6 +43,14 @@ public final class Letters extends JavaPlugin {
 
             // Set the tab completer
             lettersPluginCommand.setTabCompleter(lettersCommand);
+        }
+
+        // Register the whisper command
+        PluginCommand whisperPluginCommand = getCommand("tell");
+        if (whisperPluginCommand != null) {
+            // Set the command executor
+            WhisperCommand whisperCommand = new WhisperCommand(this);
+            whisperPluginCommand.setExecutor(whisperCommand);
         }
 
         // Register the event listeners

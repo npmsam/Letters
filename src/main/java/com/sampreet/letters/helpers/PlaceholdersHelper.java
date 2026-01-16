@@ -8,6 +8,7 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.advancement.Advancement;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -19,6 +20,40 @@ import org.jetbrains.annotations.NotNull;
 public final class PlaceholdersHelper {
     // Prevent instantiation of the class
     private PlaceholdersHelper() {
+    }
+
+    // Helper function to insert placeholders and colors into messages for commands
+    public static Component setPlaceholders(
+            Component messageComponent,
+            CommandSender sender,
+            Player recipient,
+            String whisperMessage,
+            Letters plugin) {
+        // Return null if the message is null
+        if (messageComponent == null) {
+            return null;
+        }
+
+        // Replace sender placeholder
+        if (sender instanceof Player player) {
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<sender>")
+                    .replacement(playerComponent(player)));
+        }
+
+        // Replace recipient placeholder
+        if (recipient != null) {
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<recipient>")
+                    .replacement(playerComponent(recipient)));
+        }
+
+        // Replace whisper message placeholder
+        if (whisperMessage != null) {
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<message>")
+                    .replacement(whisperMessage));
+        }
+
+        // Pass null for the event
+        return setPlaceholders(messageComponent, null, plugin);
     }
 
     // Helper function to insert placeholders into messages
@@ -78,7 +113,7 @@ public final class PlaceholdersHelper {
 
     // Helper function to use the function above without needing to pass an event
     public static Component setPlaceholders(Component messageComponent, Letters plugin) {
-        // Pass null for the event so event
+        // Pass null for the event
         return setPlaceholders(messageComponent, null, plugin);
     }
 
