@@ -84,11 +84,19 @@ public final class PlaceholdersHelper {
 
         // Replace placeholders for when player earns an advancement
         if (event instanceof PlayerAdvancementDoneEvent playerAdvancementDoneEvent) {
-            messageComponent = messageComponent
-                    .replaceText(builder -> builder.matchLiteral("<advancement>")
-                            .replacement(advancementComponent(playerAdvancementDoneEvent.getAdvancement())))
-                    .replaceText(builder -> builder.matchLiteral("<player>")
-                            .replacement(playerComponent(playerAdvancementDoneEvent.getPlayer())));
+            // Replace player
+            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
+                    .replacement(playerComponent(playerAdvancementDoneEvent.getPlayer())));
+
+            // Only replace advancement-related placeholders if display exists
+            if (playerAdvancementDoneEvent.getAdvancement().getDisplay() != null) {
+                messageComponent = messageComponent
+                        .replaceText(builder -> builder.matchLiteral("<advancement>")
+                                .replacement(advancementComponent(playerAdvancementDoneEvent.getAdvancement())))
+                        .replaceText(builder -> builder.matchLiteral("<advancement_color>")
+                                .replacement(frameColorComponent(
+                                        playerAdvancementDoneEvent.getAdvancement().getDisplay().frame())));
+            }
         }
 
         // Replace placeholders for when player dies
@@ -167,6 +175,11 @@ public final class PlaceholdersHelper {
 
         // Return the built component
         return advancementTitle.hoverEvent(HoverEvent.showText(hover));
+    }
+
+    // Helper function to get the color of the advancement as an empty component
+    private static Component frameColorComponent(@NotNull AdvancementDisplay.Frame frame) {
+        return Component.empty().color(frameColor(frame));
     }
 
     // Helper function to get the color of the advancement

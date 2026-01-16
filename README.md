@@ -15,7 +15,8 @@ on a typical server. More events may be added later, but there are no plans for 
 - Player advancement
 - Whisper / private messages
 
-If a vanish plugin (SuperVanish or PremiumVanish) is installed, join and quit messages are suppressed or shown appropriately when a player vanishes or reappears, ensuring messages reflect their visible status.
+If a vanish plugin (SuperVanish or PremiumVanish) is installed, join and quit messages are suppressed or shown
+appropriately when a player vanishes or reappears, ensuring messages reflect their visible status.
 
 The plugin lets you define custom server messages not only for everyone on the server but also for specific permission
 groups defined in [LuckPerms](https://luckperms.net/) and for specific players by matching their username.

@@ -10,38 +10,45 @@ messages:
   default:
     # Random message from this list will be sent when a player joins the server.
     # Multiple messages are okay to add here.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>
     join:
       - "<green><player> joined the server"
       - "<green><player> is now online"
 
     # Random message from this list will be sent when a player quits the server.
     # Multiple messages are okay to add here.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>
     quit:
       - "<red><player> left the server"
       - "<red><player> went offline"
 
     # Random message from this list will be sent when a player dies.
     # Only one message is used by default, it’s okay to add more.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>, <death_message>
     death:
       - "<red><death_message>"
 
     # Random message from this list will be used when a player sends a message in chat.
     # Only one format is used by default, it’s okay to add more.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>, <message>
     chat:
       - "<player> <gray>>> <white><message>"
 
     # Random message from this list will be used when a player earns an advancement.
     # Only one message is used by default, it’s okay to add more.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>, <advancement>
     advancement:
-      - "<player> has made the advancement <advancement>"
+      - "<advancement_color><player> has made the advancement <advancement>"
 
     # Random message from this list will be shown to the sender.
     # Only one message is used by default, it’s okay to add more.
+    # Available built-in placeholders (no PlaceholderAPI needed): <sender>, <recipient>, <message>
     whisper.sender:
       - "<gray>(you) -> <recipient>: <white><message>"
 
     # Random message from this list will be sent to the recipient.
     # Only one message is used by default, it’s okay to add more.
+    # Available built-in placeholders (no PlaceholderAPI needed): <sender>, <recipient>, <message>
     whisper.recipient:
       - "<gray><sender> -> (you): <white><message>"
 
@@ -54,6 +61,7 @@ messages:
     admin:
       # A random message from this list will be sent when a player in the admin group joins the server.
       # Multiple messages are okay to add here.
+      # Available built-in placeholders (no PlaceholderAPI needed): <player>
       join:
         - "<red>Admin <player> has joined the server"
         - "<red>Admin <player> is now online"
@@ -67,6 +75,7 @@ messages:
     Notch:
       # A random message from this list will be sent when the player with the username 'Notch' joins the server.
       # Multiple messages are okay to add here.
+      # Available built-in placeholders (no PlaceholderAPI needed): <player>
       join:
         - "<light_purple>Notch has joined the server"
         - "<light_purple>Notch is now online"

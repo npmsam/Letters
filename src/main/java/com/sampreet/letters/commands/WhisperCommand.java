@@ -22,7 +22,7 @@ public class WhisperCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String labelString,
-            String @NotNull [] args) {
+                             String @NotNull [] args) {
         // Check if no player name was provided.
         if (args.length == 0) {
             // Redirect to vanilla /msg
