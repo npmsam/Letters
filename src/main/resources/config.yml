@@ -15,6 +15,13 @@ messages:
       - "<green><player> joined the server"
       - "<green><player> is now online"
 
+    # Random message from this list will be sent when a player joins the server for the first time ever.
+    # Multiple messages are okay to add here.
+    # Available built-in placeholders (no PlaceholderAPI needed): <player>
+    first-join:
+      - "<yellow>Welcome <player> to the server"
+      - "<yellow><player> joined the server for the first time"
+
     # Random message from this list will be sent when a player quits the server.
     # Multiple messages are okay to add here.
     # Available built-in placeholders (no PlaceholderAPI needed): <player>
