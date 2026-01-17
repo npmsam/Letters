@@ -101,7 +101,7 @@ messages:
       placeholder-api-found: "PlaceholderAPI detected. Extended placeholder support enabled."
 
       # Message sent when PlaceholderAPI is not detected.
-      placeholder-api-not-found: "PlaceholderAPI not found. Some placeholders may not work."
+      placeholder-api-not-found: "PlaceholderAPI not found. Additional placeholders will not work."
 
       # Message sent when LuckPerms is detected.
       luck-perms-found: "LuckPerms detected. Group-based message support enabled."
@@ -113,7 +113,7 @@ messages:
       vanish-plugin-found: "<vanish_plugin> detected. Vanish support enabled."
 
       # Message sent when a supported vanish plugin is not detected.
-      vanish-plugin-not-found: "No supported vanish plugin found. Vanish-related features will not work."
+      vanish-plugin-not-found: "SuperVanish or PremiumVanish not found. Vanish-related features will not work."
 
     # Command-related system messages.
     commands:

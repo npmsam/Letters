@@ -6,13 +6,14 @@ That's why I made this plugin, to make server messages easy to customize.
 
 ## Features
 
-The plugin supports custom messages for the most common server events listed below. More events may be added in the future, but there are no plans for now.
+The plugin supports custom messages for the most common server events listed below. More events may be added in the
+future, but there are no plans for now.
 
 - Player join
 - Player quit
 - Player death
-- Chat message
-- Whisper message
+- Player chat
+- Player whisper
 - Player advancement
 
 If you use a vanish plugin such as SuperVanish or PremiumVanish,
@@ -25,26 +26,30 @@ This makes it easy to control how messages appear without relying on multiple pl
 
 Messages support classic Minecraft color codes as well as PaperMC MiniMessage formatting.
 Each event includes built-in placeholders,
-and you can also use [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to add placeholders from other plugins.
+and you can also use [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to add placeholders from
+other plugins.
 
 ## Placeholders
 
 Letters includes a small set of built-in placeholders for each message type.
 These cover the most basic needs and are listed in the default config file.
 
-For more advanced placeholders,
-you can install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) along with any expansion packs you need.
+For additional placeholders,
+you can install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) along with any expansion packs
+you need.
 
 ## Formatting
 
 Messages can use classic Minecraft formatting codes with the `&` symbol,
 such as `&a` for green text or `&l` for bold text.
-A full list of supported codes is available in the [Minecraft formatting codes documentation](https://minecraft.wiki/w/Formatting_codes).
+A full list of supported codes is available in
+the [Minecraft formatting codes documentation](https://minecraft.wiki/w/Formatting_codes).
 
 You can also use MiniMessage,
 which provides a cleaner and more readable syntax.
 For example, `<green>` makes text green and `<bold>` makes text bold.
-More details are available in the [PaperMC MiniMessage documentation](https://docs.papermc.io/adventure/minimessage/format/).
+More details are available in
+the [PaperMC MiniMessage documentation](https://docs.papermc.io/adventure/minimessage/format/).
 
 ## Config Structure
 
@@ -89,22 +94,24 @@ messages:
 
 ## Download
 
-You can download a prebuilt JAR file from the [GitHub releases](https://github.com/npmsam/Letters/releases) page if you do not want to build the plugin yourself.
+You can download a prebuilt JAR file from the [GitHub releases](https://github.com/npmsam/Letters/releases) page if you
+do not want to build the plugin yourself.
 The default configuration file lists all supported events and built-in placeholders,
 so reading it is an easy way to understand how the plugin works and get started.
 
 ## Building
 
 If you prefer to build the plugin yourself, you can use [Apache Maven](https://maven.apache.org/).
-Open a terminal or command prompt, navigate to the plugin directory you cloned or extracted, and run the following command:
+Open a terminal or command prompt, navigate to the plugin directory you cloned or extracted, and run the following
+command:
 
 ```bash
 mvn clean package
-
 ```
 
 ## Licensing
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
-You are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the plugin, as long as the original copyright notice and this permission notice are included.
+You are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the plugin, as long as the
+original copyright notice and this permission notice are included.
 See the [LICENSE](https://github.com/npmsam/Letters/blob/main/LICENSE) file for more information.
