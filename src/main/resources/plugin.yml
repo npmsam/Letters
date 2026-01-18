@@ -4,7 +4,7 @@ main: com.sampreet.letters.Letters
 api-version: "1.21"
 prefix: Letters
 authors: [ Sampreet Singh ]
-description: Paper Minecraft plugin to customize system messages (join, quit, etc.) using & codes and MiniMessage, with PlaceholderAPI support and per-player, permission-group based, or global messages.
+description: A Minecraft server plugin that allows you to customize server messages such as player join, quit, death, and more.
 website: https://github.com/npmsam/Letters
 softdepend:
   - PlaceholderAPI

@@ -21,13 +21,14 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(@NotNull PlayerJoinEvent event) {
         // Make empty message variable so it can be conditionally set later
-        String joinMessage;
+        String joinMessage = null;
 
         // Check if player is joining the server for the first time
         if (!event.getPlayer().hasPlayedBefore())
             joinMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "first-join", plugin);
-            // Retrieve a random default message from config.yml
-        else joinMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
+        // Retrieve a random default message from config.yml
+        if (joinMessage == null)
+            joinMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
 
         // Insert PlaceholderAPI placeholders into the message
         joinMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), joinMessage);
