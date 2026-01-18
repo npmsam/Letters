@@ -32,6 +32,12 @@ public class AsyncChatListener implements Listener {
         // Insert placeholders into the message
         Component finalChatMessageComponent = PlaceholdersHelper.setPlaceholders(chatMessageComponent, event, plugin);
 
+        // Return if the component is empty or null
+        if (finalChatMessageComponent == null || finalChatMessageComponent == Component.empty()) {
+            event.setCancelled(true);
+            return;
+        }
+
         // Set the custom message as the system message
         event.renderer((source, sourceDisplayName, message, viewer) -> finalChatMessageComponent);
     }
