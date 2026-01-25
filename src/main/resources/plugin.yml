@@ -1,7 +1,7 @@
 name: Letters
-version: '0.0.1'
+version: "0.0.1"
 main: com.sampreet.letters.Letters
-api-version: '1.21'
+api-version: "1.21"
 prefix: Letters
 authors: [ Sampreet Singh ]
 description: A Minecraft server plugin that allows you to customize server messages such as player join, quit, death, and more.
