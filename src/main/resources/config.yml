@@ -2,7 +2,7 @@
 enabled: true
 
 # Messages used for all players unless overridden by group or player rules.
-default_messages:
+default:
   # Random message is sent when a player joins.
   # Placeholders: <player>
   join:
@@ -23,7 +23,7 @@ default_messages:
 
 # Overrides default messages for players in specific LuckPerms groups.
 # Group messages have lower priority than player-specific messages.
-group_based_messages:
+group_based:
   # Messages for players in the 'admin' group.
   admin:
     # Random message is sent when a group member joins.
@@ -34,7 +34,7 @@ group_based_messages:
 
 # Overrides all other messages for specific players.
 # Player names must match exact Minecraft usernames.
-player_specific_messages:
+player_specific:
   # Messages for the player 'Notch'.
   Notch:
     # Random message is sent when this player joins.
@@ -44,14 +44,16 @@ player_specific_messages:
       - "<light_purple>Notch is now online"
 
 # These messages are shown in the console or as command feedback
-system_messages:
+system:
   # Message sent to the console when the plugin is enabled or disabled
   lifecycle:
     enable: "Enabled Letters v<plugin_version>"
     disable: "Disabled Letters v<plugin_version>"
+
   # Message sent to the console before the plugin disables itself due to a config option
   status:
     disabled: "Plugin is disabled in config."
+
   # Message sent to the console when the plugin checks for dependency plugins
   dependencies:
     placeholder_api:
@@ -65,3 +67,13 @@ system_messages:
     vanish:
       found: "<vanish_plugin> detected. Vanish-related features will work"
       not_found: "SuperVanish or PremiumVanish not detected. Vanish-related features will not work"
+
+  # Messages sent when a command is run
+  commands:
+    reload: "<green>Reloaded Letters v<plugin_version>"
+
+    # Messages sent when an error occurs on a command being run
+    errors:
+      no_command: "<red>You must specify a subcommand."
+      no_permission: "<red>You do not have permission to do that."
+      invalid_command: "<red>Unknown command."

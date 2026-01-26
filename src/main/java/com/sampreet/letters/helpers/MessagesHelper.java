@@ -31,17 +31,17 @@ public class MessagesHelper {
     }
 
     public static String resolveRandomMessage(@NotNull Player player, String key, Letters plugin) {
-        String message = getRandomMessage("player_specific_messages." + player.getName() + "." + key, plugin);
+        String message = getRandomMessage("player_specific." + player.getName() + "." + key, plugin);
 
         if (message == null) {
             String primaryGroup = LuckPermsHook.getPrimaryGroup(player);
 
             if (primaryGroup != null)
-                message = getRandomMessage("group_based_messages." + primaryGroup + "." + key, plugin);
+                message = getRandomMessage("group_based." + primaryGroup + "." + key, plugin);
         }
 
         if (message == null)
-            message = getRandomMessage("default_messages." + key, plugin);
+            message = getRandomMessage("default." + key, plugin);
 
         return message;
     }

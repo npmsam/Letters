@@ -1,10 +1,12 @@
 package com.sampreet.letters;
 
+import com.sampreet.letters.commands.LettersCommand;
 import com.sampreet.letters.hooks.LuckPermsHook;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import com.sampreet.letters.hooks.VanishHook;
 import com.sampreet.letters.listeners.PlayerJoinListener;
 import com.sampreet.letters.listeners.PlayerQuitListener;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Letters extends JavaPlugin {
@@ -14,7 +16,7 @@ public final class Letters extends JavaPlugin {
         saveDefaultConfig();
 
         if (!getConfig().getBoolean("enabled", true)) {
-            logMessage("system_messages.status.disabled");
+            logMessage("system.status.disabled");
 
             getServer().getPluginManager().disablePlugin(this);
             return;
@@ -24,15 +26,21 @@ public final class Letters extends JavaPlugin {
         LuckPermsHook.checkLuckPerms(this);
         VanishHook.checkVanishPlugin(this);
 
+        PluginCommand lettersPluginCommand = getCommand("letters");
+        if (lettersPluginCommand != null) {
+            LettersCommand lettersCommand = new LettersCommand(this);
+            lettersPluginCommand.setExecutor(lettersCommand);
+        }
+
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
 
-        logMessage("system_messages.lifecycle.enable");
+        logMessage("system.lifecycle.enable");
     }
 
     @Override
     public void onDisable() {
-        logMessage("system_messages.lifecycle.disable");
+        logMessage("system.lifecycle.disable");
     }
 
     private void logMessage(String path) {

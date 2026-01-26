@@ -18,6 +18,14 @@ public class PlaceholdersHelper {
         if (messageComponent == null)
             return null;
 
+        if (plugin != null) {
+            messageComponent = replaceLiteral(
+                    messageComponent,
+                    "<plugin_version>",
+                    Component.text(plugin.getDescription().getVersion())
+            );
+        }
+
         Player player = extractPlayer(event);
         if (player != null) {
             messageComponent = replaceLiteral(

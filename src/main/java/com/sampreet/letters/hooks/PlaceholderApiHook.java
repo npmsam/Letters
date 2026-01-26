@@ -21,8 +21,8 @@ public class PlaceholderApiHook {
         boolean PlaceholderApiFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
         String messagePath = PlaceholderApiFound ?
-                "system_messages.dependencies.placeholder_api.found" :
-                "system_messages.dependencies.placeholder_api.not_found";
+                "system.dependencies.placeholder_api.found" :
+                "system.dependencies.placeholder_api.not_found";
 
         String message = plugin.getConfig().getString(messagePath);
 

@@ -27,8 +27,8 @@ public class VanishHook {
         }
 
         String messagePath = (pluginName != null) ?
-                "system_messages.dependencies.vanish.found" :
-                "system_messages.dependencies.vanish.not_found";
+                "system.dependencies.vanish.found" :
+                "system.dependencies.vanish.not_found";
 
         String message = plugin.getConfig().getString(messagePath);
 
