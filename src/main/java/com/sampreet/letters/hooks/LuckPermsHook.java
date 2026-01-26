@@ -14,9 +14,9 @@ public class LuckPermsHook {
     public static void checkLuckPerms(Letters plugin) {
         boolean LuckPermsFound = Bukkit.getPluginManager().getPlugin("LuckPerms") != null;
 
-        String messagePath = LuckPermsFound
-                ? "system_messages.dependencies.luckperms.found"
-                : "system_messages.dependencies.luckperms.not_found";
+        String messagePath = LuckPermsFound ?
+                "system_messages.dependencies.luckperms.found" :
+                "system_messages.dependencies.luckperms.not_found";
 
         String message = plugin.getConfig().getString(messagePath);
 

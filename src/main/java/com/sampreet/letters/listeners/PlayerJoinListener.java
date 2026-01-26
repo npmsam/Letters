@@ -2,11 +2,13 @@ package com.sampreet.letters.listeners;
 
 import com.sampreet.letters.Letters;
 import com.sampreet.letters.helpers.MessagesHelper;
+import com.sampreet.letters.helpers.PlaceholdersHelper;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerJoinListener implements Listener {
     private final Letters plugin;
@@ -16,7 +18,7 @@ public class PlayerJoinListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent playerJoinEvent) {
+    public void onPlayerJoin(@NotNull PlayerJoinEvent playerJoinEvent) {
         String joinMessage = null;
 
         if (!playerJoinEvent.getPlayer().hasPlayedBefore())
@@ -29,7 +31,7 @@ public class PlayerJoinListener implements Listener {
 
         Component joinMessageComponent = MessagesHelper.translateColors(joinMessage);
 
-//        joinMessageComponent = PlaceholdersHelper.setPlaceholders(joinMessageComponent, playerJoinEvent, plugin);
+        joinMessageComponent = PlaceholdersHelper.setPlaceholders(joinMessageComponent, playerJoinEvent, plugin);
 
         playerJoinEvent.joinMessage(joinMessageComponent);
     }

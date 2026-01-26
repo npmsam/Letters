@@ -20,9 +20,9 @@ public class PlaceholderApiHook {
     public static void checkPlaceholderAPI(@NotNull Letters plugin) {
         boolean PlaceholderApiFound = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
 
-        String messagePath = PlaceholderApiFound
-                ? "system_messages.dependencies.placeholder_api.found"
-                : "system_messages.dependencies.placeholder_api.not_found";
+        String messagePath = PlaceholderApiFound ?
+                "system_messages.dependencies.placeholder_api.found" :
+                "system_messages.dependencies.placeholder_api.not_found";
 
         String message = plugin.getConfig().getString(messagePath);
 

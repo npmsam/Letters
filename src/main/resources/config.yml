@@ -1,5 +1,48 @@
 # If set to false, the plugin will not register any listeners or send messages
 enabled: true
+
+# Messages used for all players unless overridden by group or player rules.
+default_messages:
+  # Random message is sent when a player joins.
+  # Placeholders: <player>
+  join:
+    - "<green><player> joined the server"
+    - "<green><player> is now online"
+
+  # Used only the first time a player ever joins the server.
+  # Placeholders: <player>
+  first-join:
+    - "<yellow>Welcome <player> to the server"
+    - "<yellow><player> joined the server for the first time"
+
+  # Random message is sent when a player quits.
+  # Placeholders: <player>
+  quit:
+    - "<red><player> left the server"
+    - "<red><player> went offline"
+
+# Overrides default messages for players in specific LuckPerms groups.
+# Group messages have lower priority than player-specific messages.
+group_based_messages:
+  # Messages for players in the 'admin' group.
+  admin:
+    # Random message is sent when a group member joins.
+    # Placeholders: <player>
+    join:
+      - "<red>Admin <player> has joined the server"
+      - "<red>Admin <player> is now online"
+
+# Overrides all other messages for specific players.
+# Player names must match exact Minecraft usernames.
+player_specific_messages:
+  # Messages for the player 'Notch'.
+  Notch:
+    # Random message is sent when this player joins.
+    # Placeholders: <player>
+    join:
+      - "<light_purple>Notch has joined the server"
+      - "<light_purple>Notch is now online"
+
 # These messages are shown in the console or as command feedback
 system_messages:
   # Message sent to the console when the plugin is enabled or disabled
@@ -14,6 +57,7 @@ system_messages:
     placeholder_api:
       found: "PlaceholderAPI detected. Additional placeholders will work"
       not_found: "PlaceholderAPI not detected. Additional placeholders will not work"
+
     luckperms:
       found: "LuckPerms detected. Group-based messages will work"
       not_found: "LuckPerms not detected. Group-based messages will not work"
