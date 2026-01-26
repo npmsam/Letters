@@ -61,3 +61,7 @@ system_messages:
     luckperms:
       found: "LuckPerms detected. Group-based messages will work"
       not_found: "LuckPerms not detected. Group-based messages will not work"
+
+    vanish:
+      found: "<vanish_plugin> detected. Vanish-related features will work"
+      not_found: "SuperVanish or PremiumVanish not detected. Vanish-related features will not work"

@@ -18,22 +18,35 @@ public class PlaceholdersHelper {
         if (messageComponent == null)
             return null;
 
-        if (plugin != null) {
-            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<plugin_version>")
-                    .replacement(Component.text(plugin.getDescription().getVersion())));
-        }
-
-        if (event instanceof PlayerJoinEvent playerJoinEvent) {
-            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
-                    .replacement(playerComponent(playerJoinEvent.getPlayer())));
-        }
-
-        if (event instanceof PlayerQuitEvent playerQuitEvent) {
-            messageComponent = messageComponent.replaceText(builder -> builder.matchLiteral("<player>")
-                    .replacement(playerComponent(playerQuitEvent.getPlayer())));
+        Player player = extractPlayer(event);
+        if (player != null) {
+            messageComponent = replaceLiteral(
+                    messageComponent,
+                    "<player>",
+                    playerComponent(player)
+            );
         }
 
         return messageComponent;
+    }
+
+    public static Component setPlaceholders(Component messageComponent, Letters plugin) {
+        return setPlaceholders(messageComponent, null, plugin);
+    }
+
+    public static Component replaceLiteral(Component component, String key, Component value) {
+        return component.replaceText(builder ->
+                builder.matchLiteral(key).replacement(value));
+    }
+
+    private static Player extractPlayer(Event event) {
+        if (event instanceof PlayerJoinEvent join) {
+            return join.getPlayer();
+        }
+        if (event instanceof PlayerQuitEvent quit) {
+            return quit.getPlayer();
+        }
+        return null;
     }
 
     public static @NotNull Component playerComponent(@NotNull Player player) {

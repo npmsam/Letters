@@ -2,6 +2,7 @@ package com.sampreet.letters;
 
 import com.sampreet.letters.hooks.LuckPermsHook;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
+import com.sampreet.letters.hooks.VanishHook;
 import com.sampreet.letters.listeners.PlayerJoinListener;
 import com.sampreet.letters.listeners.PlayerQuitListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,7 @@ public final class Letters extends JavaPlugin {
 
         PlaceholderApiHook.checkPlaceholderAPI(this);
         LuckPermsHook.checkLuckPerms(this);
+        VanishHook.checkVanishPlugin(this);
 
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
