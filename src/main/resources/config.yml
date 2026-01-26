@@ -11,6 +11,9 @@ system_messages:
     disabled: "Plugin is disabled in config."
   # Message sent to the console when the plugin checks for dependency plugins
   dependencies:
+    placeholder_api:
+      found: "PlaceholderAPI detected. Additional placeholders will work"
+      not_found: "PlaceholderAPI not detected. Additional placeholders will not work"
     luckperms:
       found: "LuckPerms detected. Group-based messages will work"
       not_found: "LuckPerms not detected. Group-based messages will not work"

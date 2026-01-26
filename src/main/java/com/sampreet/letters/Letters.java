@@ -1,6 +1,7 @@
 package com.sampreet.letters;
 
 import com.sampreet.letters.hooks.LuckPermsHook;
+import com.sampreet.letters.hooks.PlaceholderApiHook;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Letters extends JavaPlugin {
@@ -16,6 +17,7 @@ public final class Letters extends JavaPlugin {
             return;
         }
 
+        PlaceholderApiHook.checkPlaceholderAPI(this);
         LuckPermsHook.checkLuckPerms(this);
 
         logMessage("system_messages.lifecycle.enable");
