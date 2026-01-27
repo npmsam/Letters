@@ -1,53 +1,58 @@
 # If set to false, the plugin will not register any listeners or send messages
 enabled: true
 
-# Messages used for all players unless overridden by group or player rules.
+# Messages used for all players unless overridden by group or player rules
 default:
-  # Random message is sent when a player joins.
+  # Random message is sent when a player joins
   # Placeholders: <player>
   join:
     - "<green><player> joined the server"
     - "<green><player> is now online"
 
-  # Used only the first time a player ever joins the server.
+  # Used only the first time a player ever joins the server
   # Placeholders: <player>
   first-join:
     - "<yellow>Welcome <player> to the server"
     - "<yellow><player> joined the server for the first time"
 
-  # Random message is sent when a player quits.
+  # Random message is sent when a player quits
   # Placeholders: <player>
   quit:
     - "<red><player> left the server"
     - "<red><player> went offline"
 
-  # Random message is sent when a player dies.
+  # Random message is sent when a player dies
   # Placeholders: <player>, <message>
   death:
     - "<red><message>"
 
-  # Random message is sent when a player sends a message in chat.
+  # Random message is sent when a player sends a message in chat
   # Placeholders: <player>, <message>
   chat:
     - "<gray><player>: <white><message>"
 
-# Overrides default messages for players in specific LuckPerms groups.
-# Group messages have lower priority than player-specific messages.
+  # Random message is sent when a player earns an advancement
+  # Placeholders: <player>, <advancement>, <color>
+  advancement:
+    - "<advancement_color><player> has made the advancement <advancement>"
+
+# Overrides default messages for players in specific LuckPerms groups
+# Group messages have lower priority than player-specific messages
 group_based:
-  # Messages for players in the 'admin' group.
+  # Messages for players in the 'admin' group
   admin:
-    # Random message is sent when a group member joins.
+    # Random message is sent when a group member joins
     # Placeholders: <player>
     join:
       - "<red>Admin <player> has joined the server"
       - "<red>Admin <player> is now online"
 
-# Overrides all other messages for specific players.
-# Player names must match exact Minecraft usernames.
+# Overrides all other messages for specific players
+# Player names must match exact Minecraft usernames
 player_specific:
-  # Messages for the player 'Notch'.
+  # Messages for the player 'Notch'
   Notch:
-    # Random message is sent when this player joins.
+    # Random message is sent when this player joins
     # Placeholders: <player>
     join:
       - "<light_purple>Notch has joined the server"

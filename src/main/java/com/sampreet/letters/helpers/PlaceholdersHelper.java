@@ -1,16 +1,21 @@
 package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
+import io.papermc.paper.advancement.AdvancementDisplay;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class PlaceholdersHelper {
     private PlaceholdersHelper() {
@@ -53,6 +58,21 @@ public class PlaceholdersHelper {
             );
         }
 
+        if (event instanceof PlayerAdvancementDoneEvent playerAdvancementDoneEvent) {
+            messageComponent = replaceLiteral(
+                    messageComponent,
+                    "<advancement>",
+                    advancementComponent(playerAdvancementDoneEvent.getAdvancement())
+            );
+
+            if (playerAdvancementDoneEvent.getAdvancement().getDisplay() != null)
+                messageComponent = replaceLiteral(
+                        messageComponent,
+                        "<color>",
+                        frameColorComponent(playerAdvancementDoneEvent.getAdvancement().getDisplay().frame())
+                );
+        }
+
         return messageComponent;
     }
 
@@ -74,6 +94,8 @@ public class PlaceholdersHelper {
             return playerDeathEvent.getPlayer();
         if (event instanceof AsyncChatEvent asyncChatEvent)
             return asyncChatEvent.getPlayer();
+        if (event instanceof PlayerAdvancementDoneEvent playerAdvancementDoneEvent)
+            return playerAdvancementDoneEvent.getPlayer();
         return null;
     }
 
@@ -88,5 +110,33 @@ public class PlaceholdersHelper {
                                         .append(Component.text(player.getUniqueId().toString()))))
                 .clickEvent(
                         ClickEvent.suggestCommand("/tell " + player.getName() + " "));
+    }
+
+    public static @Nullable Component advancementComponent(@NotNull Advancement advancement) {
+        AdvancementDisplay advancementDisplay = advancement.getDisplay();
+
+        if (advancementDisplay == null)
+            return null;
+
+        NamedTextColor advancementColor = frameColor(advancementDisplay.frame());
+        Component advancementTitle = advancementDisplay.title().color(advancementColor);
+
+        Component hover = advancementDisplay.title().color(advancementColor)
+                .appendNewline()
+                .append(advancementDisplay.description().color(advancementColor));
+
+        return advancementTitle.hoverEvent(HoverEvent.showText(hover));
+    }
+
+    private static @NotNull Component frameColorComponent(@NotNull AdvancementDisplay.Frame frame) {
+        return Component.empty().color(frameColor(frame));
+    }
+
+    private static NamedTextColor frameColor(@NotNull AdvancementDisplay.Frame frame) {
+        return switch (frame) {
+            case TASK -> NamedTextColor.GREEN;
+            case GOAL -> NamedTextColor.LIGHT_PURPLE;
+            case CHALLENGE -> NamedTextColor.GOLD;
+        };
     }
 }
