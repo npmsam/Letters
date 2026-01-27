@@ -26,9 +26,7 @@ public class PlayerHideListener implements Listener {
         String hideMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "quit", plugin);
 
         hideMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), hideMessage);
-
         Component hideMessageComponent = MessagesHelper.translateColors(hideMessage);
-
         hideMessageComponent = VanishPlaceholdersHelper.setPlaceholders(hideMessageComponent, event, plugin);
 
         event.setSilent(true);

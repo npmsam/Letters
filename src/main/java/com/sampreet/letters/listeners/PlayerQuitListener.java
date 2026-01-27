@@ -21,9 +21,7 @@ public class PlayerQuitListener implements Listener {
         String quitMessage = MessagesHelper.resolveRandomMessage(playerQuitEvent.getPlayer(), "quit", plugin);
 
         quitMessage = PlaceholderApiHook.usePlaceholderAPI(playerQuitEvent.getPlayer(), quitMessage);
-
         Component quitMessageComponent = MessagesHelper.translateColors(quitMessage);
-
         quitMessageComponent = PlaceholdersHelper.setPlaceholders(quitMessageComponent, playerQuitEvent, plugin);
 
         playerQuitEvent.quitMessage(quitMessageComponent);

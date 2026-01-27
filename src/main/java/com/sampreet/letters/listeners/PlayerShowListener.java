@@ -26,9 +26,7 @@ public class PlayerShowListener implements Listener {
         String showMessage = MessagesHelper.resolveRandomMessage(event.getPlayer(), "join", plugin);
 
         showMessage = PlaceholderApiHook.usePlaceholderAPI(event.getPlayer(), showMessage);
-
         Component showMessageComponent = MessagesHelper.translateColors(showMessage);
-
         showMessageComponent = VanishPlaceholdersHelper.setPlaceholders(showMessageComponent, event, plugin);
 
         event.setSilent(true);

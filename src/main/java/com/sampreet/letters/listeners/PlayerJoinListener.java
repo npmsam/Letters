@@ -28,9 +28,7 @@ public class PlayerJoinListener implements Listener {
             joinMessage = MessagesHelper.resolveRandomMessage(playerJoinEvent.getPlayer(), "join", plugin);
 
         joinMessage = PlaceholderApiHook.usePlaceholderAPI(playerJoinEvent.getPlayer(), joinMessage);
-
         Component joinMessageComponent = MessagesHelper.translateColors(joinMessage);
-
         joinMessageComponent = PlaceholdersHelper.setPlaceholders(joinMessageComponent, playerJoinEvent, plugin);
 
         playerJoinEvent.joinMessage(joinMessageComponent);

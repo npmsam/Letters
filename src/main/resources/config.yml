@@ -21,6 +21,16 @@ default:
     - "<red><player> left the server"
     - "<red><player> went offline"
 
+  # Random message is sent when a player dies.
+  # Placeholders: <player>, <message>
+  death:
+    - "<red><message>"
+
+  # Random message is sent when a player sends a message in chat.
+  # Placeholders: <player>, <message>
+  chat:
+    - "<gray><player>: <white><message>"
+
 # Overrides default messages for players in specific LuckPerms groups.
 # Group messages have lower priority than player-specific messages.
 group_based:

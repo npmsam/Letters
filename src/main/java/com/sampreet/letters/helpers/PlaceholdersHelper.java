@@ -1,11 +1,13 @@
 package com.sampreet.letters.helpers;
 
 import com.sampreet.letters.Letters;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +37,22 @@ public class PlaceholdersHelper {
             );
         }
 
+        if (event instanceof PlayerDeathEvent playerDeathEvent) {
+            messageComponent = replaceLiteral(
+                    messageComponent,
+                    "<message>",
+                    playerDeathEvent.deathMessage()
+            );
+        }
+
+        if (event instanceof AsyncChatEvent asyncChatEvent) {
+            messageComponent = replaceLiteral(
+                    messageComponent,
+                    "<message>",
+                    asyncChatEvent.message()
+            );
+        }
+
         return messageComponent;
     }
 
@@ -48,12 +66,14 @@ public class PlaceholdersHelper {
     }
 
     private static Player extractPlayer(Event event) {
-        if (event instanceof PlayerJoinEvent join) {
-            return join.getPlayer();
-        }
-        if (event instanceof PlayerQuitEvent quit) {
-            return quit.getPlayer();
-        }
+        if (event instanceof PlayerJoinEvent playerJoinEvent)
+            return playerJoinEvent.getPlayer();
+        if (event instanceof PlayerQuitEvent playerQuitEvent)
+            return playerQuitEvent.getPlayer();
+        if (event instanceof PlayerDeathEvent playerDeathEvent)
+            return playerDeathEvent.getPlayer();
+        if (event instanceof AsyncChatEvent asyncChatEvent)
+            return asyncChatEvent.getPlayer();
         return null;
     }
 
