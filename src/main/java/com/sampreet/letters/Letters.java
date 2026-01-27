@@ -1,6 +1,7 @@
 package com.sampreet.letters;
 
 import com.sampreet.letters.commands.LettersCommand;
+import com.sampreet.letters.commands.WhisperCommand;
 import com.sampreet.letters.hooks.LuckPermsHook;
 import com.sampreet.letters.hooks.PlaceholderApiHook;
 import com.sampreet.letters.hooks.VanishHook;
@@ -29,6 +30,11 @@ public final class Letters extends JavaPlugin {
         if (lettersPluginCommand != null) {
             LettersCommand lettersCommand = new LettersCommand(this);
             lettersPluginCommand.setExecutor(lettersCommand);
+        }
+
+        PluginCommand whisperPluginCommand = getCommand("tell");
+        if (whisperPluginCommand != null) {
+            whisperPluginCommand.setExecutor(new WhisperCommand(this));
         }
 
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);

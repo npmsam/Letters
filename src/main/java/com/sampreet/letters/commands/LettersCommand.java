@@ -50,7 +50,6 @@ public class LettersCommand implements CommandExecutor {
             message = PlaceholderApiHook.usePlaceholderAPI(player, message);
 
         Component messageComponent = MessagesHelper.translateColors(message);
-
         messageComponent = PlaceholdersHelper.setPlaceholders(messageComponent, plugin);
 
         sender.sendMessage(messageComponent);

@@ -36,6 +36,16 @@ default:
   advancement:
     - "<advancement_color><player> has made the advancement <advancement>"
 
+  # Random message is sent to the sender of a whisper message
+  # Placeholders: <sender>, <recipient>, <message>
+  whisper.sender:
+    - "<gray>(you) -> <recipient>: <white><message>"
+
+  # Random message is sent to the recipient of a whisper message
+  # Placeholders: <sender>, <recipient>, <message>
+  whisper.recipient:
+    - "<gray><sender> -> (you): <white><message>"
+
 # Overrides default messages for players in specific LuckPerms groups
 # Group messages have lower priority than player-specific messages
 group_based:

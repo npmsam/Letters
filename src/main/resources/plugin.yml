@@ -9,7 +9,11 @@ website: https://github.com/npmsam/Letters
 commands:
   letters:
     description: Command to reload the plugin configuration
-    usage: /letters reload
+    usage: /<command> <subcommand>
+  tell:
+    description: Command that overrides the vanilla /msg, /tell, and /w whisper commands.
+    usage: /<command> <player> <message>
+    aliases: [ "msg", "w" ]
 permissions:
   letters.reload:
     description: Allows reloading of the plugin configuration
