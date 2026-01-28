@@ -34,7 +34,7 @@ default:
   # Random message is sent when a player earns an advancement
   # Placeholders: <player>, <advancement>, <color>
   advancement:
-    - "<advancement_color><player> has made the advancement <advancement>"
+    - "<color><player> has made the advancement <advancement>"
 
   # Random message is sent to the sender of a whisper message
   # Placeholders: <sender>, <recipient>, <message>

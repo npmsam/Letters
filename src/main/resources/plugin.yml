@@ -6,6 +6,11 @@ prefix: Letters
 authors: [ Sampreet Singh ]
 description: A Minecraft server plugin that allows you to customize server messages such as player join, quit, death, and more.
 website: https://github.com/npmsam/Letters
+softdepend:
+  - PlaceholderAPI
+  - LuckPerms
+  - SuperVanish
+  - PremiumVanish
 commands:
   letters:
     description: Command to reload the plugin configuration
