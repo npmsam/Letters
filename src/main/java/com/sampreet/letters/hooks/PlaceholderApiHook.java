@@ -11,6 +11,9 @@ public class PlaceholderApiHook {
     }
 
     public static String usePlaceholderAPI(Player player, String message) {
+        if (message == null || message.trim().isEmpty())
+            return null;
+
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
             return message;
 

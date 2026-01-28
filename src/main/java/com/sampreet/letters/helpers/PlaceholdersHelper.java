@@ -28,7 +28,9 @@ public class PlaceholdersHelper {
             Player recipient,
             String whisperMessage,
             Letters plugin) {
-        if (messageComponent == null) return null;
+        if (messageComponent == null) {
+            return null;
+        }
 
         if (sender instanceof Player player) {
             messageComponent = replaceLiteral(
@@ -58,8 +60,9 @@ public class PlaceholdersHelper {
     }
 
     public static Component setPlaceholders(Component messageComponent, Event event, Letters plugin) {
-        if (messageComponent == null)
+        if (messageComponent == null) {
             return null;
+        }
 
         if (plugin != null) {
             messageComponent = replaceLiteral(

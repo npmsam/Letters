@@ -24,7 +24,7 @@ public class AsyncChatListener implements Listener {
         Component chatMessageComponent = MessagesHelper.translateColors(chatMessage);
         Component finalChatMessageComponent = PlaceholdersHelper.setPlaceholders(chatMessageComponent, asyncChatEvent, plugin);
 
-        if (finalChatMessageComponent == null || finalChatMessageComponent == Component.empty()) {
+        if (finalChatMessageComponent == null || finalChatMessageComponent.equals(Component.empty())) {
             asyncChatEvent.setCancelled(true);
             return;
         }
