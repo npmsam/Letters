@@ -16,16 +16,15 @@ The plugin lets you customize messages for the following most common server even
 - Player advancements
 
 If you use a vanish plugin like SuperVanish or PremiumVanish,
-join and quit messages will hide or show correctly when players vanish or reappear.
-
+join and quit messages will hide or show correctly when players vanish or reappear. 
 The plugin makes it easy to manage message behavior without using multiple plugins by letting you set different messages for
 - Everyone on the server
 - Specific [LuckPerms](https://luckperms.net/) groups
 - Individual players by username
 
 To make sure you can customize messages however you like, the plugin supports
-- [Classic Minecraft `&` color and formatting codes](https://minecraft.wiki/w/Formatting_codes)
-- [PaperMC MiniMessage formatting](https://docs.papermc.io/adventure/minimessage/format/)
+- Classic Minecraft [`&` color and formatting codes](https://minecraft.wiki/w/Formatting_codes)
+- PaperMC [MiniMessage formatting](https://docs.papermc.io/adventure/minimessage/format/)
 - Built in placeholders for each event
 - [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) for extra placeholders from other plugins
 
@@ -39,9 +38,7 @@ you can install [PlaceholderAPI](https://www.spigotmc.org/resources/placeholdera
 ## 🎨 Formatting
 
 You can format messages using [classic Minecraft codes](https://minecraft.wiki/w/Formatting_codes) like `&a` for green text
-or `&l` for bold text.
-
-You can also use [MiniMessage](https://docs.papermc.io/adventure/minimessage/format/) for cleaner formatting.
+or `&l` for bold text. You can also use [MiniMessage](https://docs.papermc.io/adventure/minimessage/format/) for cleaner formatting.
 For example `<green>` makes text green and `<bold>` makes text bold.
 
 ## ⚙️ Configuration
