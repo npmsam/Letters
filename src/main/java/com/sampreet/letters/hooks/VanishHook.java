@@ -36,7 +36,7 @@ public class VanishHook {
             return;
 
         if (pluginName != null)
-            plugin.getLogger().info(message.replace("<vanish_plugin>", pluginName));
+            plugin.getLogger().info(message.replace("<plugin>", pluginName));
         else
             plugin.getLogger().warning(message);
     }
