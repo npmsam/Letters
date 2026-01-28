@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sampreet</groupId>
     <artifactId>letters</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>Letters</name>
     <description>A Minecraft server plugin that allows you to customize server messages such as player join, quit,

@@ -17,6 +17,7 @@ The plugin lets you customize messages for the following most common server even
 
 If you use a vanish plugin like SuperVanish or PremiumVanish,
 join and quit messages will hide or show correctly when players vanish or reappear. 
+
 The plugin makes it easy to manage message behavior without using multiple plugins by letting you set different messages for
 - Everyone on the server
 - Specific [LuckPerms](https://luckperms.net/) groups

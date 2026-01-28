@@ -72,8 +72,8 @@ player_specific:
 system:
   # Message sent to the console when the plugin is enabled or disabled
   lifecycle:
-    enable: "Enabled Letters v<plugin_version>"
-    disable: "Disabled Letters v<plugin_version>"
+    enable: "Enabled Letters v<version>"
+    disable: "Disabled Letters v<version>"
 
   # Message sent to the console before the plugin disables itself due to a config option
   status:
@@ -95,7 +95,7 @@ system:
 
   # Messages sent when a command is run
   commands:
-    reload: "<green>Reloaded Letters v<plugin_version>"
+    reload: "<green>Reloaded Letters v<version>"
 
     # Messages sent when an error occurs on a command being run
     errors:

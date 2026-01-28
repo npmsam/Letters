@@ -54,7 +54,7 @@ public final class Letters extends JavaPlugin {
     private void logMessage(String path) {
         String message = getConfig().getString(path);
         if (message == null || message.trim().isEmpty()) return;
-        message = message.replace("<plugin_version>", getDescription().getVersion());
+        message = message.replace("<version>", getDescription().getVersion());
         getLogger().info(message);
     }
 }

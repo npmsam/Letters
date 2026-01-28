@@ -64,7 +64,7 @@ public class PlaceholdersHelper {
         if (plugin != null) {
             messageComponent = replaceLiteral(
                     messageComponent,
-                    "<plugin_version>",
+                    "<version>",
                     Component.text(plugin.getDescription().getVersion())
             );
         }
